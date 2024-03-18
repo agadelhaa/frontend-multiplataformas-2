@@ -3,6 +3,10 @@
     import roteador from './router'
     import Menubar from 'primevue/menubar';
     import PrimeVue from 'primevue/config';
+    import InputText from 'primevue/inputtext';
+    import InputMask from 'primevue/inputmask';
+    import InputNumber from 'primevue/inputnumber';
+
 
     
 
@@ -10,8 +14,9 @@
     .use(PrimeVue)
     .use(roteador)
     .component('Menubar', Menubar)
-    
-    
+    .component('InputText', InputText)
+    .component('InputMask', InputMask)
+    .component('InputNumber',InputNumber)
     
     app.mount('#app')
     

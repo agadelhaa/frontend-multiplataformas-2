@@ -14,14 +14,20 @@
                         </div>
                     </nav>
                 </div>
+            
             </div>
         </div>
     </main>
-</template>
+</template> 
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-export default defineComponent({});
+import CadastroRacao from './CadastroRacao.vue';
+export default defineComponent({
+components:{
+
+}
+});
 </script>
 <style scoped>
 .escolhas-principais{
