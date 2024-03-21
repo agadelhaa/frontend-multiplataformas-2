@@ -1,23 +1,28 @@
 <template>
     <div class="escolhas-principais">
         <div class="apresentacao-cadastro">
-            <div class="escolhas">
-                <h2 class="titulo-cadastro">
-                    O que você deseja cadastrar ?
-                </h2>
-                <div class="cadastro">
-                    <ul class="opcoes-cadastro">
-                        <li v-for="(produtos, index) in produto" :key="index" class="opcoes">
-                            {{ produtos }}
-                            <button @click="exibirProduto(produtos)">POPOP</button>
-                        </li>
-                    </ul>
-                </div>
-                
-            </div>
-            <div class="cadastrar">
-                        <CadastroRacao v-if="produtoSelecionado === 'RAÇÃO'" />
+            <h1 class="titulo-lista">
+                Seus itens
+            </h1>
+            <Button @click="listarRacao">Listar Rações</Button>
+            <div class="card-lista">
+                <div class="cards-container">
+                    <div v-for="(item, index) in itens" :key="index" class="card-item">
+                        <div class="card">
+                            <div class="card-header">
+                              {{ item.nome }}
+                            </div>
+                            <div class="card-body">
+                                <p><strong>ID:</strong> {{ item.id }}</p>
+                               
+                                <p><strong>Quantidade:</strong> {{ item.kqQuantidade }}</p>
+                                <p><strong>Valor:</strong> {{ item.valorPago }}</p>
+                                <p><strong>Data:</strong> {{ item.data }}</p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -25,71 +30,76 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import CadastroRacao from '@/components/CadastroRacao.vue';
+import IRacao from '@/interface/IRacao';
+import { obterRacao } from '@/http';
+import ListarRacao from '@/interface/ListarRacao';
 
 export default defineComponent({
     name: "CadastroProduto",
     components: {
-        CadastroRacao
     },
 
     data() {
         return {
-            produto: [
-                'RAÇÃO',
-                'VETERINARIO'
-            ],
-            produtoSelecionado: ''
+           itens: [] as ListarRacao []
         };
     },
     methods: {
-        exibirProduto(produto: string) {
-            this.produtoSelecionado = produto;
-        },
-     
+      async listarRacao(){
+        try {
+        const racoes = await obterRacao() as unknown as ListarRacao [];
+        this.itens = racoes;
+    } catch (error) {
+        console.error('Erro ao listar as rações:', error);
+    }
+        
+      }
+    },
+    created(){
+        this.listarRacao()
     }
 })
 </script>
 
 <style scoped>
-.escolhas{
-    background-color: red;
-    height: 4rem;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+.apresentacao-cadastro {
+   
 }
-.cadastro{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 5%;
-    height: 5rem;
-}
-.escolhas-principais{
+.card-lista {
     background-color: #D9D9D9;
-    margin: 5% 7%;
-    height: 30rem;
-    width: 80%;
+    margin-top: 20px;
+    padding: 10px;
 }
 
-.opcoes-cadastro{
+.cards-container {
     display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: baseline;
-    height: 2rem;
-    gap: 10%;   
-}
-.opcoes{
-    background-color: white;
-    border: 2px solid white;
-    border-radius: 5px;
-    width: 130px;
-    text-align: center;
-    cursor: pointer;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: red;
+    height: 35rem;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
+.card-item {
+    width: calc(33.33% - 20px); /* Defina o tamanho do card aqui */
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 10px;
+    background-color: #5CB9EE;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.card-body {
+    padding: 10px;
+    height: 10rem;
+}
 </style>

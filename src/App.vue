@@ -3,6 +3,7 @@
    <div class="column is-one-quarter">
  <TelaPrincipal/>
  <CadastroRacao />
+ <CadastrarProduto />
 
  </div>
  <div class="column is-three-quarter">
@@ -16,10 +17,12 @@
 import { defineComponent } from 'vue';
 import TelaPrincipal from './components/TelaPrincipal.vue'
 import CadastroRacao from './components/CadastroRacao.vue'
+import CadastrarProduto from './views/CadastrarProduto.vue';
 export default defineComponent({
   components:{
     TelaPrincipal,
-    CadastroRacao
+    CadastroRacao,
+    CadastrarProduto
   
 
   }  
