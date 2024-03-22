@@ -10,8 +10,7 @@ export async function cadastroRacao(salvarRacao: IRacao): Promise<string> {
 }
 export async function obterRacao():Promise<ListarRacao> {
     const resposta = await axios.get('http://localhost:8080/racao');
-    // console.log(resposta)
-    // console.log(resposta);
+    console.log(resposta);
     
     return resposta.data.content as ListarRacao;
 }

@@ -264,6 +264,8 @@ export default defineComponent ({
     },
 
     data() {
+
+        
         return {
             visible: false,
             racao:{
@@ -279,6 +281,7 @@ export default defineComponent ({
            const salvar = await cadastroRacao(this.racao)
            console.log(salvar);
             this.visible = false;
+     
             alert("ração salva")
         },
         cancelar (){

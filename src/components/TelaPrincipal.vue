@@ -70,7 +70,7 @@ methods:{
 </script>
 <style scoped>
 .apresentacao-itens{
-
+width: 60%;
 }
 .escolhas-principais{
     background-color: #D9D9D9;
@@ -89,6 +89,7 @@ methods:{
     width: 100%;
     /* gap: 5%; */
     height: 40rem;
+    background-color: white;
 }
 .cadastrar{
     background-color: white;
@@ -128,12 +129,15 @@ methods:{
     height: 10rem;
 }
 .titulo-cadastro{
-
     height: 4rem;
     display: flex;
-    /* text-align: center; */
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
+    background-color: white;
+    color: black;
+    box-shadow: 0px 6px 6px #5CB9EE;
+    width: 100%;
+    margin-top: 20px;
 }
 </style>

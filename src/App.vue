@@ -2,7 +2,7 @@
     <main class="columns is-gapless">
    <div class="column is-one-quarter">
  <TelaPrincipal/>
- <CadastroRacao />
+
  <CadastrarProduto />
 
  </div>
@@ -21,8 +21,7 @@ import CadastrarProduto from './views/CadastrarProduto.vue';
 export default defineComponent({
   components:{
     TelaPrincipal,
-    CadastroRacao,
-    CadastrarProduto
+
   
 
   }  

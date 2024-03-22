@@ -16,7 +16,8 @@
     import Row from 'primevue/row';  
     import Dialog from 'primevue/dialog';
     import Card from 'primevue/card';
-
+    import Vue from 'vue'
+    // import vuetify from '@/plugins/vuetify'
 
 
 
