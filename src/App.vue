@@ -1,30 +1,35 @@
 <template>
-    <main class="columns is-gapless">
-   <div class="column is-one-quarter">
- <TelaPrincipal/>
+    <main>
+<div class="inicio">
+  <router-view></router-view>
 
- <CadastrarProduto />
+</div>
 
- </div>
- <div class="column is-three-quarter">
-  <router-view ></router-view>
 
- </div>
  </main>
+<Rodape />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import TelaPrincipal from './components/TelaPrincipal.vue'
 import CadastroRacao from './components/CadastroRacao.vue'
-import CadastrarProduto from './views/CadastrarProduto.vue';
+import CadastrarProduto from './views/CadastrarProduto.vue'
+import Rodape from './components/Rodape.vue'
+import VisualizarRacao from './components/VisualizarRacao.vue';
+import CardsItens from './components/CardsItens.vue'
+
 export default defineComponent({
   components:{
-    TelaPrincipal,
+    
+    Rodape,
 
-  
+    
+ 
 
-  }  
+  },
+
+    
 });
 </script>
 
@@ -33,4 +38,5 @@ export default defineComponent({
   padding: 0;
   margin: 0;
 }
+
 </style>

@@ -2,26 +2,21 @@
    
     <div class="apresentacao-cadastro">
         <h1 class="titulo-lista">
-            Seus itens
+            
         </h1>
     </div>
-    
-        <div class="card">
-            <DataTable :value="item" scrollable scrollHeight="400px">
-                <Column field="id" header="ID" style="min-width: 100px"></Column>
-                <Column field="nome" header="Nome" style="min-width: 200px"></Column>
-                <Column field="kqQuantidade" header="Quilos" style="min-width: 200px"></Column>
-                <Column field="valorPago" header="Valor" style="min-width: 200px"></Column>
-                <Column field="data" header="Data" style="min-width: 200px" :body="formatDateColumn"></Column>
-            </DataTable>
-        </div>
+    <div class="itens">
+        
+    </div>
+      
     
     </template>
     
     <script lang="ts">
     import { defineComponent } from 'vue';
     import IRacao from '@/interface/IRacao';
-    import { format } from 'date-fns';
+    import CadastroRacao from '@/components/CadastroRacao.vue';
+    //import {format} from 'date-fns';
 import ListarRacao from '@/interface/ListarRacao';
 import { obterRacao } from '@/http';
     export default defineComponent({
@@ -32,6 +27,9 @@ import { obterRacao } from '@/http';
         //         required: true
         //     }
         // },
+        components:{
+
+        },
         data(){
             return{
                 item: [] as ListarRacao []
@@ -53,8 +51,8 @@ import { obterRacao } from '@/http';
       },
             formatDateColumn(data: Date) {
                 // Converte a data do formato YYYY/MM/DD para DD/MM/YYYY antes de exibi-la
-                const formattedDate = format(data, 'dd/MM/yyyy');
-                return formattedDate;
+           //     const formattedDate = format(data, 'dd/MM/yyyy');
+             //   return formattedDate;
             }
         },
         created(){
@@ -69,6 +67,9 @@ import { obterRacao } from '@/http';
     }
     .apresentacao-cadastro {
        
+    }
+    .itens{
+        background-color: red
     }
     .card {
         border: 1px solid #ccc;

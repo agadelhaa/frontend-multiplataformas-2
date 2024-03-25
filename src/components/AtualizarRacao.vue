@@ -1,8 +1,6 @@
-
 <template>
     <div class="card flex justify-content-center" style="background-color: black; height: 3rem; width: 18%;">
-        <Button label=" Cadastrar" icon="pi pi-plus" @click="visible = true" class="cadastro" />
-
+        <Button label="Atualizar" icon="pi pi-sync" @click="visible = true" class="cadastro" />
         <Dialog
     v-model:visible="visible"
     modal
@@ -28,14 +26,17 @@
                     </svg>
                     <div class="inline-flex flex-column gap-2">
                         <div class="cadastro-componente-1">
-            <div class="componente-cadastro-1">
+                <div class="componente-cadastro-1">           
+                <label for="" class="campo-label">ID</label>
+                <InputNumber v-model="racao.id"  :min="1" class="input-componente" />              
+                </div>
+                <div class="componente-cadastro-1">
             <label for="nome-produto" class="campo-label">Nome do produto <i class="pi pi-pencil" style="font-size: 1rem"></i></label>
                 <InputText type="text" v-model="racao.nome"  placeholder="Nome" class="input-componente" />
             </div>
             <div class="componente-cadastro-2"> 
-                <label for="" class="campo-label">Quilos Kg</label>
-                <InputNumber v-model="racao.kqQuantidade" invalid mode="decimal" :min="0" class="input-componente" />
-                <!-- <InputNumber v-model="value" invalid mode="decimal" :minFractionDigits="2" /> -->
+                <label for="" class="campo-label">Quantidade (Kg)</label>
+                <InputNumber v-model="racao.kqQuantidade"  :min="0" class="input-componente" />
            
             </div>
                     </div>
@@ -68,7 +69,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Calendar from 'primevue/calendar';
-import { cadastroRacao } from '@/http';
+import { updateRacao } from '../http';
 export default defineComponent ({
     components:{
         Calendar
@@ -79,20 +80,19 @@ export default defineComponent ({
         
         return {
             visible: false,
-            racao:{
-            nome: '',
-            kqQuantidade: 0,
-            valorPago: 0,
-            data: new Date (),
-            }
-        };
-    },
-    methods:{
-       async salvarRacao(){
-
-
-           const salvar = await cadastroRacao(this.racao)
-           console.log(salvar);
+                racao:{
+                id: 0,    
+                nome: '',
+                kqQuantidade: 0,
+                valorPago: 0,
+                data: new Date (),
+                }
+            };
+        },
+        methods:{
+        async salvarRacao(){
+            const salvar = await updateRacao(this.racao)
+            console.log(salvar);
             this.visible = false;
      
             alert("ração salva")
@@ -117,16 +117,16 @@ export default defineComponent ({
     outline: none;
     padding: 0 7px;
 }
-.cadastro{
-    background-color: white;
-    width: 100%;
-    height: 3rem;
-}
 
 .campo-label{
     color: black;
 }
 
+.cadastro{
+    background-color: white;
+    width: 100%;
+    height: 3rem;
+}
 .cadastro-racao{
  
     height: 10rem;
@@ -202,10 +202,10 @@ export default defineComponent ({
     display: flex;
     gap: 40px;
     margin-bottom: 30px;
-    width: 500px;
+    width: 660px;
 }
     .cadastro-componente-2{
-    width: 500px;
+    width: 660px;
     display: flex;
     gap: 40px;
     margin-bottom: 16%;

@@ -2,7 +2,8 @@
 
 import TelaPrincipal from "@/components/TelaPrincipal.vue";
 import CadastrarProduto from "@/views/CadastrarProduto.vue";
-import VisualizarProduto from "@/views/VisualizarProduto.vue";
+import VisualizarRacao from "@/components/VisualizarRacao.vue";
+import CardsItens from "@/components/CardsItens.vue";
 import { RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
 
 
@@ -14,12 +15,12 @@ const rotas: RouteRecordRaw [] = [{
 {
     path:'/cadastrar',
     name:'CadastrarProduto',
-    component:CadastrarProduto
+    component:CardsItens
 },
 {
     path:'/visualizar',
     name:'VisualizarProduto',
-    component:VisualizarProduto
+    component:VisualizarRacao
 }
 
 ]
