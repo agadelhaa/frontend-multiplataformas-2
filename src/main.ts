@@ -17,6 +17,10 @@
     import Dialog from 'primevue/dialog';
     import Card from 'primevue/card';
     import Vue from 'vue'
+    import Calendar from 'primevue/calendar';
+    import Checkbox from 'primevue/checkbox';
+
+
     // import vuetify from '@/plugins/vuetify'
 
 
@@ -38,6 +42,8 @@
     .component('Row', Row)
     .component('Dialog', Dialog)
     .component('Card',Card)
+    .component('Calendar', Calendar)
+    .component('Checkbok',Checkbox)
     
     
     app.mount('#app')

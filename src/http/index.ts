@@ -28,11 +28,8 @@ export async function obterRacao():Promise<ListarRacao> {
     // }
 
     export async function updateRacao(atualizarRacao: AtualizarRacao): Promise<string> {
-        try {
-            // Aqui você pode converter o objeto AtualizarRacao para o formato que sua API espera
-            const body = JSON.stringify(atualizarRacao);
-            
-            const resposta = await axios.put('http://localhost:8080/racao', body, {
+        try {            
+            const resposta = await axios.put('http://localhost:8080/racao', JSON.stringify(atualizarRacao), {
                 headers: {
                     'Content-Type': 'application/json'
                 }

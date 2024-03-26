@@ -3,5 +3,5 @@ export default interface ListarRacao{
     nome: string,
     kqQuantidade: number,
     valorPago: number,
-    data: Date;
+    dataCompra: Date;
 }

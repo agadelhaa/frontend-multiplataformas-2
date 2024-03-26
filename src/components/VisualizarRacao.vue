@@ -1,132 +1,182 @@
 <template>
-<BarraMenu />
-<div class="lista">
-    <div class="card tabela">
-        
-                <DataTable :value="item" scrollable scrollHeight="400px" style="padding: 0px 20px;" >
-                    <Column field="id" header="ID" style="min-width: 100px">
-                      
-                    </Column>
-                    <Column field="nome" header="Nome" style="min-width: 200px">
-                        <template #body="{ data: rowData }">
-                             <input v-model="rowData.nome" />
-                      </template>
-                    </Column>
-                    <Column field="kqQuantidade" header="Quilos" style="min-width: 200px">
-                        <template #body="{ data: rowData }">
-                             <input v-model="rowData.kqQuantidade" />
-                      </template>
-                    </Column>
-                    <Column field="valorPago" header="Valor" style="min-width: 200px">
-                        <template #body="{ data: rowData }">
-                             <input v-model="rowData.valorPago" />
-                      </template>
-                    </Column>
-                    <Column field="data" header="Data" style="min-width: 200px" :body="formatDateColumn">
-                        <template #body="{ data: rowData }">
-                             <input v-model="rowData.data" />
-                      </template>
-                    </Column>
-                    <Column header="Ações" style="min-width: 100px">
-          <template #body="{data: rowData}">
-            <!-- Componente que você quer adicionar -->
-     
-                        <AtualizarRacao :rowData="rowData" />
-          </template>
-        </Column>
-                        
-                 </DataTable>
-            
+    <BarraMenu />
+    <!-- <div class="lista">
+      <div class="card tabela">
+        <DataTable :value="item" scrollable scrollHeight="400px" style="padding: 0px 20px;">
+          <Column field="id" header="ID" style="min-width: 100px">
+          </Column>
+          <Column field="nome" header="Nome" style="min-width: 200px">
+            <template #body="{ data: rowData }">
+              <input v-model="rowData.nome" />
+            </template>
+          </Column>
+          <Column field="kqQuantidade" header="Quilos" style="min-width: 200px">
+            <template #body="{ data: rowData }">
+              <input v-model="rowData.kqQuantidade" />
+            </template>
+          </Column>
+          <Column field="valorPago" header="Valor" style="min-width: 200px">
+            <template #body="{ data: rowData }">
+              <input v-model="rowData.valorPago" />
+            </template>
+          </Column>
+          <Column field="dataCompra" header="Data" style="min-width: 200px" :body="formatDateColumn">
+            <template #body="{ data: rowData }">
+              <input v-model="rowData.dataCompra" />
+            </template>
+          </Column>
+          <Column header="Ações" style="min-width: 100px">
+            <template #body="{ data: rowData }">
+              <Checkbox v-model="rowData.selecionado" @change="adicionarItem(rowData.id)" />
+            </template>
+          </Column>
+        </DataTable>
+      </div>
+      <div class="card">
+        <DataTable :value="listaItensSelcionado" tableStyle="min-width: 50rem">
+            <Column field="id" header="Code"></Column>
+            <Column field="nome" header="Nome"></Column>
+            <Column field="kqQuantidade" header="Quantidade (kg)"></Column>
+        <Column field="valorPago" header="Valor"></Column>
+        <Column field="data" header="Data"></Column>
+        </DataTable>
     </div>
-</div>        
-</template>
-<script lang="ts">
-import { defineComponent } from 'vue';
-import ListarRacao from '../interface/ListarRacao';
-import {obterRacao} from '../http'
-import BarraMenu from './BarraMenu.vue';
-import TelaPrincipal from './TelaPrincipal.vue';
-import { updateRacao } from '../http';
-import AtualizarRacao from './AtualizarRacao.vue';
-import { icon } from '@fortawesome/fontawesome-svg-core';
+       
 
-export default defineComponent({
+    </div> -->
+    <div class="lista">
+    
+    <div class="card p-fluid tabela">
+        <DataTable v-model:editingRows="editingRows" :value="item" editMode="row" dataKey="id" @row-edit-save="onRowEditSave"
+        
+        
+        >
+            <Column field="id" header="Code" style="width: 20%">
+                <template #editor="{ data, field }">
+                    <InputText v-model="data[field]" />
+                </template>
+            </Column>
+            <Column field="nome" header="Name" style="width: 20%">
+                <template #editor="{ data, field }">
+                    <InputText v-model="data[field]" />
+                </template>
+            </Column>
+            <Column field="kqQuantidade" header="Status" style="width: 20%">
+                <template #editor="{ data, field }">
+                    <InputNumber v-model="data[field]"  optionLabel="label" optionValue="value" placeholder="Select a Status"/>
+                      
+                   
+                </template>
 
-        name: "CadastroProduto",
-        // props: {
-        //     itens: {
-        //         type: Array as () => ListarRacao[],
-        //         required: true
-        //     }
-        // },
-        components:{
-            BarraMenu, 
-            AtualizarRacao
-         
-           
-            
-        },
-        data(){
-            return{
-                item: [] as ListarRacao [],
-           
-                racao:{
-                    id: 0,    
+            </Column>
+            <Column field="valorPago" header="Price" style="width: 20%">
+                <template #editor="{ data, field }">
+                    <InputNumber v-model="data[field]" mode="currency" currency="USD" locale="en-US" />
+                </template>
+                
+            </Column>
+            <Column field="dataCompra" header="Data" style="min-width: 200px" :body="formatDateColumn">
+                <template #editor="{ data, field }">
+                    <Calendar v-model="data[field]" />
+                </template>
+          </Column>
+            <Column :rowEditor="true" style="width: 10%; min-width: 8rem" bodyStyle="text-align:center">
+    
+            </Column>
+        </DataTable>
+    </div>
+    </div>
+
+  </template>
+  
+  <script lang="ts">
+  import { defineComponent } from 'vue';
+  import ListarRacao from '../interface/ListarRacao';
+  import { obterRacao } from '../http';
+  import BarraMenu from './BarraMenu.vue';
+  import { updateRacao } from '../http';
+  import Checkbox from 'primevue/checkbox';
+import AtualizarRacao from '@/interface/AtualizarRacao';
+  
+  
+  export default defineComponent({
+    name: "CadastroProduto",
+    components: {
+        BarraMenu
+
+    },
+    data() {
+      return {
+        item: [] as ListarRacao[],
+            racao: {
+                id: 0,
                 nome: '',
                 kqQuantidade: 0,
                 valorPago: 0,
-                data: new Date (),
-                }
-            }
-        },
-        methods: {
-            async listarRacao(){
-        try {
-        const racoes = await obterRacao() as unknown as ListarRacao [];
-        this.item = racoes;
-        console.log(racoes);
-        
-        
-    
-    } catch (error) {
-        console.error('Erro ao listar as rações:', error);
-    }
-        
-      },
-      async salvarRacao(id: number){
-            const itemRacao = this.item.find(item => item.id === id)
-            if(itemRacao){
-                this.racao = {...this.racao, ... itemRacao}
-                
-            const salvar = await updateRacao(this.racao)
-            console.log(salvar);
-            alert('Ração atualizada com sucesso')    
-        }
-            
+                data: new Date(),
+            },
+            products: null as null | any,
+            editingRows: [],
           
+      };
+    },
+    // mounted() {
+    //     ProductService.getProductsMini().then((data: any) => (this.products = data));
+    // },
+    methods: {
+        async onRowEditSave(event: any) {
+          console.log("EVENTO: ",event);
+          let data = event.newData as AtualizarRacao   
+          console.log("atualizar dados ----->  ", data);          
+          //chamar o metodo put de atualizar esses dados bem aqui    
+          //re-renderiza a lista da tabela
+          const salvar = await updateRacao(data)
+          console.log(salvar);
+          
+        },
+       
+        formatCurrency(value: number | bigint) {
+            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+        },
+      async listarRacao() {
+       
+          const racoes = await obterRacao() as unknown as ListarRacao[];
+          this.item = racoes.map(racao => ({ ...racao, selecionado: false }));
+          console.log(racoes);
+     
+      },
+      async salvarRacao() {
+        const salvar = await updateRacao(this.racao)
+            console.log(salvar);
+           
      
             alert("ração salva")
-        },
-            formatDateColumn(data: Date) {
-                // Converte a data do formato YYYY/MM/DD para DD/MM/YYYY antes de exibi-la
-           //     const formattedDate = format(data, 'dd/MM/yyyy');
-             //   return formattedDate;
-            }
-        },
-        created(){
-            this.listarRacao();
-        }
-})
-</script>
-<style scoped>
-.lista{
+      },
+      formatDateColumn(data: Date) {
+        // Converte a data do formato YYYY/MM/DD para DD/MM/YYYY antes de exibi-la
+        //     const formattedDate = format(data, 'dd/MM/yyyy');
+        //   return formattedDate;
+      }
+    },
+    created() {
+      this.listarRacao();
+    }
+  });
+  </script>
+  
+  <style scoped>
+  .lista {
     height: 30rem;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     margin-bottom: 37px;
-}
-.tabela{
+  }
+  
+  .tabela {
     box-shadow: 0px 0px 21px 4px aqua;
-}
-
-</style>
+    width: 70%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  </style>
+  

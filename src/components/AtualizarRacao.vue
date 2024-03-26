@@ -110,7 +110,12 @@ export default defineComponent ({
             this.racao.valorPago = 0    
             this.visible = false;
           
-        }
+        },
+        abrirDialog(rowData: any) {
+  this.visible = true; // Definir a propriedade `visible` no objeto `this`
+  this.racao = { ...rowData }; // Preencher os campos com os dados do item selecionado
+}
+
 
     },
 });
