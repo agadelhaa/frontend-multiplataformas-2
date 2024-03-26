@@ -5,20 +5,43 @@ import axios from "axios";
 
 export async function cadastroRacao(salvarRacao: IRacao): Promise<string> {
     const body = JSON.stringify(salvarRacao);
-    console.log(body);
+    // console.log(body);
     const resposta = await axios.post('http://localhost:8080/racao', salvarRacao);
     return resposta.data as string;
 }
 export async function obterRacao():Promise<ListarRacao> {
     const resposta = await axios.get('http://localhost:8080/racao');
-    console.log(resposta);
+    // console.log(resposta);
     
     return resposta.data.content as ListarRacao;
 }
 
-export async function updateRacao(atualizarRacao: AtualizarRacao):Promise<string>{
-    const body = JSON.stringify(atualizarRacao);
-    const resposta = await axios.put('http://localhost:8080/racao')
-    return resposta.data as string
-}
+    // export async function updateRacao(atualizarRacao: AtualizarRacao):Promise<string>{
+    
+    //     const body = JSON.stringify(atualizarRacao);
+    //     const resposta = await axios.put('http://localhost:8080/racao', body, {
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     });
+    //     return resposta.data as string;
+    // }
 
+    export async function updateRacao(atualizarRacao: AtualizarRacao): Promise<string> {
+        try {
+            // Aqui você pode converter o objeto AtualizarRacao para o formato que sua API espera
+            const body = JSON.stringify(atualizarRacao);
+            
+            const resposta = await axios.put('http://localhost:8080/racao', body, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            return resposta.data as string;
+        } catch (error) {
+            // Se ocorrer algum erro durante a chamada da API, você pode tratá-lo aqui
+            console.error('Erro ao atualizar a ração:', error);
+            throw error; // Você também pode lançar o erro novamente para lidar com ele em outro lugar
+        }
+    }

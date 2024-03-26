@@ -28,7 +28,7 @@
                         <div class="cadastro-componente-1">
                 <div class="componente-cadastro-1">           
                 <label for="" class="campo-label">ID</label>
-                <InputNumber v-model="racao.id"  :min="1" class="input-componente" />              
+                <InputNumber v-model="racao.id " :min="1" class="input-componente" />              
                 </div>
                 <div class="componente-cadastro-1">
             <label for="nome-produto" class="campo-label">Nome do produto <i class="pi pi-pencil" style="font-size: 1rem"></i></label>
@@ -74,7 +74,13 @@ export default defineComponent ({
     components:{
         Calendar
     },
-
+    
+    props: {
+        rowData: {
+            type: Object, // Defina o tipo de acordo com a estrutura de seus dados
+            required: true
+        }
+},
     data() {
 
         
