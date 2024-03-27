@@ -52,9 +52,7 @@
         
         >
             <Column field="id" header="Code" style="width: 20%">
-                <template #editor="{ data, field }">
-                    <InputText v-model="data[field]" />
-                </template>
+              
             </Column>
             <Column field="nome" header="Name" style="width: 20%">
                 <template #editor="{ data, field }">
@@ -77,11 +75,14 @@
             </Column>
             <Column field="dataCompra" header="Data" style="min-width: 200px" :body="formatDateColumn">
                 <template #editor="{ data, field }">
-                    <Calendar v-model="data[field]" />
+                  
+                    <InputMask id="basic" v-model="data[field]" placeholder="99/99/9999" mask="99/99/9999" slotChar="mm/dd/yyyy" />
+
                 </template>
           </Column>
+          
             <Column :rowEditor="true" style="width: 10%; min-width: 8rem" bodyStyle="text-align:center">
-    
+        
             </Column>
         </DataTable>
     </div>
@@ -131,8 +132,14 @@ import AtualizarRacao from '@/interface/AtualizarRacao';
           //chamar o metodo put de atualizar esses dados bem aqui    
           //re-renderiza a lista da tabela
           const salvar = await updateRacao(data)
+          window.location.reload()
           console.log(salvar);
           
+        },
+        onRowEditCancel(event:any) {
+            const index = event.index;
+            this.products.splice(index, 1); // Excluir o item
+            console.log('Item excluído');
         },
        
         formatCurrency(value: number | bigint) {
