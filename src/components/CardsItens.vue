@@ -11,7 +11,7 @@
                  <img src="../assets/ração.png" alt="">
                 <div class="crud">
                   <CadastroRacao  class="cars-itens"/>
-                  <AtualizarRacao />
+                 
                 </div>
             </div>
             </div>
@@ -25,7 +25,7 @@ export default defineComponent({
     name:'CardsItens',
     components:{
         CadastroRacao,
-        AtualizarRacao,
+      
         BarraMenu
     },
     data(){
@@ -64,5 +64,9 @@ export default defineComponent({
 .crud{
     display: flex;
     margin-top: 18px;
+}
+.crud:hover{
+    background-color: aqua;
+    color: white;
 }
 </style>

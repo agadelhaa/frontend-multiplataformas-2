@@ -1,7 +1,12 @@
 
 <template>
-    <div class="card flex justify-content-center" style="background-color: black; height: 3rem; width: 18%;">
-        <Button label=" Cadastrar" icon="pi pi-plus" @click="visible = true" class="cadastro" />
+    <div class="card flex justify-content-center" style="height: 3rem; width: 5%;
+   
+    height: 3rem;
+    width: 5%;
+    display: flex;
+    justify-content: center;">
+        <Button label="Cadastrar" @click="visible = true" class="cadastro" />
 
         <Dialog
     v-model:visible="visible"
@@ -119,10 +124,14 @@ export default defineComponent ({
 }
 .cadastro{
     background-color: white;
-    width: 100%;
+    width: 50%;
     height: 3rem;
 }
 
+.cadastro:hover{
+    background-color: #5CB9EE;
+    color: white;
+}
 .campo-label{
     color: black;
 }

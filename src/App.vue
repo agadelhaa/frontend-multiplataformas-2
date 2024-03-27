@@ -34,9 +34,12 @@ export default defineComponent({
 </script>
 
 <style>
+@import 'assets/blue-saga.css';
+@import 'primeicons/primeicons.css';
 *{
   padding: 0;
   margin: 0;
 }
+
 
 </style>

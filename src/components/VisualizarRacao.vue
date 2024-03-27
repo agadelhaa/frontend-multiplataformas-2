@@ -47,19 +47,22 @@
     <div class="lista">
     
     <div class="card p-fluid tabela">
-        <DataTable v-model:editingRows="editingRows" :value="item" editMode="row" dataKey="id" @row-edit-save="onRowEditSave"
+        <DataTable v-model:editingRows="editingRows" paginator :rows="10" 
+        :value="item" editMode="row" 
+        dataKey="id" @row-edit-save="onRowEditSave"
+        style="padding: 0px 20px;"
         
         
         >
-            <Column field="id" header="Code" style="width: 20%">
+            <Column field="id" sortable header="Code" style="width: 20%;">
               
             </Column>
-            <Column field="nome" header="Name" style="width: 20%">
+            <Column field="nome" header="Nome" style="width: 20%">
                 <template #editor="{ data, field }">
                     <InputText v-model="data[field]" />
                 </template>
             </Column>
-            <Column field="kqQuantidade" header="Status" style="width: 20%">
+            <Column field="kqQuantidade" header="Quantidade (kg)" style="width: 20%;">
                 <template #editor="{ data, field }">
                     <InputNumber v-model="data[field]"  optionLabel="label" optionValue="value" placeholder="Select a Status"/>
                       
@@ -67,9 +70,9 @@
                 </template>
 
             </Column>
-            <Column field="valorPago" header="Price" style="width: 20%">
+            <Column field="valorPago" header="Valor $" style="width: 20%">
                 <template #editor="{ data, field }">
-                    <InputNumber v-model="data[field]" mode="currency" currency="USD" locale="en-US" />
+                    <InputNumber v-model="data[field]" mode="currency" currency="BRL" locale="pt-BR" />
                 </template>
                 
             </Column>
@@ -80,24 +83,29 @@
 
                 </template>
           </Column>
-          
-            <Column :rowEditor="true" style="width: 10%; min-width: 8rem" bodyStyle="text-align:center">
-        
+            <Column header="Atualizar" :rowEditor="true" style="width: 10%;text-align: center; min-width: 8rem;" bodyStyle="text-align:center">
             </Column>
+            <Column header="Excluir" style="min-width: 20%;">
+    <template #body="{ data }">
+        <Button @click="excluirItem(data.id)"><i class="pi pi-trash" style="color: slateblue"></i></Button>
+    </template>
+</Column>
         </DataTable>
     </div>
     </div>
+    
 
   </template>
   
   <script lang="ts">
   import { defineComponent } from 'vue';
   import ListarRacao from '../interface/ListarRacao';
-  import { obterRacao } from '../http';
+  import { deleteItem, obterRacao } from '../http';
   import BarraMenu from './BarraMenu.vue';
   import { updateRacao } from '../http';
   import Checkbox from 'primevue/checkbox';
 import AtualizarRacao from '@/interface/AtualizarRacao';
+import { icon } from '@fortawesome/fontawesome-svg-core';
   
   
   export default defineComponent({
@@ -136,14 +144,22 @@ import AtualizarRacao from '@/interface/AtualizarRacao';
           console.log(salvar);
           
         },
-        onRowEditCancel(event:any) {
-            const index = event.index;
-            this.products.splice(index, 1); // Excluir o item
-            console.log('Item excluído');
-        },
+        formatCurrenc(value:any) {
+      if (typeof value !== 'number') {
+        return value;
+      }
+      return value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    },
+
+      async excluirItem(id: number){
+        const excluir = await deleteItem(id) 
+        window.location.reload()
+        console.log(excluir);
+        
+      },
        
         formatCurrency(value: number | bigint) {
-            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
         },
       async listarRacao() {
        
@@ -154,6 +170,7 @@ import AtualizarRacao from '@/interface/AtualizarRacao';
       },
       async salvarRacao() {
         const salvar = await updateRacao(this.racao)
+        
             console.log(salvar);
            
      
@@ -181,7 +198,7 @@ import AtualizarRacao from '@/interface/AtualizarRacao';
   
   .tabela {
     box-shadow: 0px 0px 21px 4px aqua;
-    width: 70%;
+    width: 90%;
     overflow-y: auto;
     overflow-x: hidden;
   }

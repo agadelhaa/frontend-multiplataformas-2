@@ -42,3 +42,9 @@ export async function obterRacao():Promise<ListarRacao> {
             throw error; // Você também pode lançar o erro novamente para lidar com ele em outro lugar
         }
     }
+
+    export async function deleteItem(id:number) {
+        const resposta = await axios.delete(`http://localhost:8080/racao/${id}`)
+        console.log(resposta , 'excluida');
+        
+    }
