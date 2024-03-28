@@ -19,11 +19,9 @@
         </div>
         <div class="bem-vindo">
         <h2 class="mensagem">
-            Bem vindo, Zeus!
+            Bem vindo ao Zeus!
         </h2>
-        <span class="separador">
 
-        </span>
        
         </div>
        

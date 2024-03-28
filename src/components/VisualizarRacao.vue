@@ -1,50 +1,6 @@
 <template>
-    <BarraMenu />
-    <!-- <div class="lista">
-      <div class="card tabela">
-        <DataTable :value="item" scrollable scrollHeight="400px" style="padding: 0px 20px;">
-          <Column field="id" header="ID" style="min-width: 100px">
-          </Column>
-          <Column field="nome" header="Nome" style="min-width: 200px">
-            <template #body="{ data: rowData }">
-              <input v-model="rowData.nome" />
-            </template>
-          </Column>
-          <Column field="kqQuantidade" header="Quilos" style="min-width: 200px">
-            <template #body="{ data: rowData }">
-              <input v-model="rowData.kqQuantidade" />
-            </template>
-          </Column>
-          <Column field="valorPago" header="Valor" style="min-width: 200px">
-            <template #body="{ data: rowData }">
-              <input v-model="rowData.valorPago" />
-            </template>
-          </Column>
-          <Column field="dataCompra" header="Data" style="min-width: 200px" :body="formatDateColumn">
-            <template #body="{ data: rowData }">
-              <input v-model="rowData.dataCompra" />
-            </template>
-          </Column>
-          <Column header="Ações" style="min-width: 100px">
-            <template #body="{ data: rowData }">
-              <Checkbox v-model="rowData.selecionado" @change="adicionarItem(rowData.id)" />
-            </template>
-          </Column>
-        </DataTable>
-      </div>
-      <div class="card">
-        <DataTable :value="listaItensSelcionado" tableStyle="min-width: 50rem">
-            <Column field="id" header="Code"></Column>
-            <Column field="nome" header="Nome"></Column>
-            <Column field="kqQuantidade" header="Quantidade (kg)"></Column>
-        <Column field="valorPago" header="Valor"></Column>
-        <Column field="data" header="Data"></Column>
-        </DataTable>
-    </div>
-       
-
-    </div> -->
-    <div class="lista">
+  <BarraMenu />
+   <div class="lista">
     
     <div class="card p-fluid tabela">
         <DataTable v-model:editingRows="editingRows" paginator :rows="10" 
@@ -54,7 +10,7 @@
         
         
         >
-            <Column field="id" sortable header="Code" style="width: 20%;">
+            <Column field="id" sortable header="Código" style="width: 20%;">
               
             </Column>
             <Column field="nome" header="Nome" style="width: 20%">
@@ -70,7 +26,7 @@
                 </template>
 
             </Column>
-            <Column field="valorPago" header="Valor $" style="width: 20%">
+            <Column field="valorPago" header="Valor R$" style="width: 20%">
                 <template #editor="{ data, field }">
                     <InputNumber v-model="data[field]" mode="currency" currency="BRL" locale="pt-BR" />
                 </template>
@@ -95,6 +51,7 @@
     </div>
     
 
+
   </template>
   
   <script lang="ts">
@@ -105,7 +62,6 @@
   import { updateRacao } from '../http';
   import Checkbox from 'primevue/checkbox';
 import AtualizarRacao from '@/interface/AtualizarRacao';
-import { icon } from '@fortawesome/fontawesome-svg-core';
   
   
   export default defineComponent({
@@ -133,25 +89,24 @@ import { icon } from '@fortawesome/fontawesome-svg-core';
     //     ProductService.getProductsMini().then((data: any) => (this.products = data));
     // },
     methods: {
-        async onRowEditSave(event: any) {
-          console.log("EVENTO: ",event);
-          let data = event.newData as AtualizarRacao   
-          console.log("atualizar dados ----->  ", data);          
-          //chamar o metodo put de atualizar esses dados bem aqui    
-          //re-renderiza a lista da tabela
-          const salvar = await updateRacao(data)
-          window.location.reload()
-          console.log(salvar);
-          
-        },
-        formatCurrenc(value:any) {
-      if (typeof value !== 'number') {
-        return value;
-      }
-      return value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-    },
+      async onRowEditSave(event: any) {
+    console.log("EVENTO: ", event);
+    let data = event.newData as AtualizarRacao;
+    console.log("atualizar dados ----->  ", data);
 
-      async excluirItem(id: number){
+    // Verificar se a data inserida é maior que a data local
+    if (new Date(data.data) > new Date()) {
+        alert('Data inválida: não pode ser maior que a data atual');
+        data.data = new Date(); // Definir a data atual
+    } else {
+        // Chamar o método put para atualizar esses dados aqui
+        const salvar = await updateRacao(data);
+        window.location.reload();
+        console.log(salvar);
+    }
+  
+  },
+  async excluirItem(id: number){
         const excluir = await deleteItem(id) 
         window.location.reload()
         console.log(excluir);
@@ -159,7 +114,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core';
       },
        
         formatCurrency(value: number | bigint) {
-            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
         },
       async listarRacao() {
        
@@ -168,19 +123,13 @@ import { icon } from '@fortawesome/fontawesome-svg-core';
           console.log(racoes);
      
       },
-      async salvarRacao() {
-        const salvar = await updateRacao(this.racao)
-        
-            console.log(salvar);
-           
-     
-            alert("ração salva")
-      },
       formatDateColumn(data: Date) {
         // Converte a data do formato YYYY/MM/DD para DD/MM/YYYY antes de exibi-la
         //     const formattedDate = format(data, 'dd/MM/yyyy');
         //   return formattedDate;
       }
+      
+   
     },
     created() {
       this.listarRacao();
@@ -198,9 +147,25 @@ import { icon } from '@fortawesome/fontawesome-svg-core';
   
   .tabela {
     box-shadow: 0px 0px 21px 4px aqua;
-    width: 90%;
+    width: 70%;
     overflow-y: auto;
     overflow-x: hidden;
   }
+
+  @media screen and (max-width: 768px) {
+    .tabela {
+        width: 90%; 
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .lista {
+        height: auto;
+    }
+
+    .tabela {
+        width: 100%;
+    }
+}
   </style>
   

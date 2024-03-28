@@ -21,17 +21,21 @@ import "primevue/resources/themes/saga-blue/theme.css";
     import Vue from 'vue'
     import Calendar from 'primevue/calendar';
     import Checkbox from 'primevue/checkbox';
-
-
-    // import vuetify from '@/plugins/vuetify'
+    // import ConfirmationService from 'primevue/confirmationservice';
+    // import { useConfirm } from "primevue/useconfirm";
+    // import ToastService from 'primevue/toastservice';
+   
+    
 
 
 
     
-
+//    const confirm = useConfirm();
    const app = createApp(App)
     .use(PrimeVue)
     .use(roteador)
+    // .use(ConfirmationService)
+    // .use(ToastService)
     .component('Menubar', Menubar)
     .component('InputText', InputText)
     .component('InputMask', InputMask)

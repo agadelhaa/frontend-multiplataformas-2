@@ -40,6 +40,9 @@ export default defineComponent({
   padding: 0;
   margin: 0;
 }
+body{
+  font-family:'Krona-one,sans-serif';
+}
 
 
 </style>

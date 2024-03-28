@@ -92,7 +92,8 @@ export default defineComponent ({
                 kqQuantidade: 0,
                 valorPago: 0,
                 data: new Date (),
-                }
+                },
+                racaoSelecionada: ''
             };
         },
         methods:{
@@ -103,6 +104,7 @@ export default defineComponent ({
      
             alert("ração salva")
         },
+ 
         cancelar (){
             this.racao.nome = '',
             this.racao.data = new Date(),
@@ -110,12 +112,7 @@ export default defineComponent ({
             this.racao.valorPago = 0    
             this.visible = false;
           
-        },
-        abrirDialog(rowData: any) {
-  this.visible = true; // Definir a propriedade `visible` no objeto `this`
-  this.racao = { ...rowData }; // Preencher os campos com os dados do item selecionado
-}
-
+        }
 
     },
 });
