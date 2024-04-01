@@ -259,4 +259,41 @@ justify-content: center;
 margin: 60px 0px;
 height: 26rem;
 }
+
+@media screen and (min-width: 768px) {
+ /* .apresentacao{
+    flex-direction: column;
+    height: auto;
+ }
+ .logo-titulo{
+    flex-direction: column;
+ }
+ .rotas{
+    flex-direction: column;
+ } */
+}
+
+/* Estilos para tela pequena */
+@media screen and (max-width: 767px) {
+    .apresentacao{
+    flex-direction: column;
+    height: auto;
+ }
+ .logo-titulo{
+    flex-direction: column;
+    margin-bottom: 90px;
+  
+ }
+ .titulo-logo{
+    width: 100%;
+ }
+ .rotas{
+    flex-direction: column;
+ }
+ .logo{
+    margin-top: 90px;
+    margin-bottom: 5px;
+    width: 100%
+ }
+}
 </style>

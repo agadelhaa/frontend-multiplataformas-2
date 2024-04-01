@@ -35,7 +35,7 @@
             </div>
             <div class="componente-cadastro-2"> 
                 <label for="" class="campo-label">Quantidade (kg)</label>
-                <InputNumber v-model="racao.kqQuantidade" invalid mode="decimal" :min="0" class="input-componente" :class="{'input-vazio': !racao.kqQuantidade}" />
+                <InputNumber v-model="racao.kgQuantidade" invalid mode="decimal" :min="0" class="input-componente" :class="{'input-vazio': !racao.kgQuantidade}" />
                 <!-- <InputNumber v-model="value" invalid mode="decimal" :minFractionDigits="2" /> -->
            
             </div>
@@ -83,7 +83,7 @@ export default defineComponent ({
             visible: false,
             racao:{
             nome: '',
-            kqQuantidade: 0,
+            kgQuantidade: 0,
             valorPago: 0,
             data: new Date (),
             }
@@ -130,12 +130,12 @@ export default defineComponent ({
                     
                  default:{
                     try{
-                        // const salvar = await cadastroRacao(this.racao)
+                        const salvar = await cadastroRacao(this.racao)
                         // console.log(salvar);
                         this.visible = false;
                         this.racao.nome = '',
                         this.racao.data = new Date(),
-                        this.racao.kqQuantidade = 0,
+                        this.racao.kgQuantidade = 0,
                         this.racao.valorPago = 0  
                         mensagem = 'Ração salva!'
                     }
@@ -151,13 +151,13 @@ export default defineComponent ({
         cancelar (){
             this.racao.nome = '',
             this.racao.data = new Date(),
-            this.racao.kqQuantidade = 0,
+            this.racao.kgQuantidade = 0,
             this.racao.valorPago = 0    
             this.visible = false;
           
         }, 
         camposPreenchidos(){
-            return this.racao.nome && this.racao.kqQuantidade && this.racao.valorPago;
+            return this.racao.nome && this.racao.kgQuantidade && this.racao.valorPago;
         }
         
     },

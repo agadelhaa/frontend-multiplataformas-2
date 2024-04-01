@@ -62,7 +62,7 @@ computed:{
 .campo-foto{
     display: flex;
     justify-content: center;
-    margin-bottom: 94px;
+    margin-bottom: 78px;
 }
 
 .foto-card{

@@ -21,8 +21,8 @@ import "primevue/resources/themes/saga-blue/theme.css";
     import Vue from 'vue'
     import Calendar from 'primevue/calendar';
     import Checkbox from 'primevue/checkbox';
-    // import ConfirmationService from 'primevue/confirmationservice';
-    // import { useConfirm } from "primevue/useconfirm";
+    import ConfirmationService from 'primevue/confirmationservice';
+    import ConfirmPopup from 'primevue/confirmpopup';
     // import ToastService from 'primevue/toastservice';
    
     
@@ -34,11 +34,12 @@ import "primevue/resources/themes/saga-blue/theme.css";
    const app = createApp(App)
     .use(PrimeVue)
     .use(roteador)
-    // .use(ConfirmationService)
+    .use(ConfirmationService)
     // .use(ToastService)
     .component('Menubar', Menubar)
     .component('InputText', InputText)
     .component('InputMask', InputMask)
+    .component('ConfirmPopup', ConfirmPopup)
     .component('InputNumber',InputNumber)
     .component('Button', Button)
     .component('Dropdown', Dropdown)
@@ -50,7 +51,6 @@ import "primevue/resources/themes/saga-blue/theme.css";
     .component('Card',Card)
     .component('Calendar', Calendar)
     .component('Checkbok',Checkbox)
-    
-    
+
     app.mount('#app')
     

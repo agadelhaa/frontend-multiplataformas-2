@@ -58,7 +58,7 @@ export default defineComponent({
 .cards {
     display: flex;
     justify-content: center;
-    margin: 60px 0px;
+    margin: 53px 0px;
     height: 26rem;
 }   
 .crud{

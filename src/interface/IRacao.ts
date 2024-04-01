@@ -1,7 +1,7 @@
 export default interface IRacao{
 
     nome: string,
-    kqQuantidade: number,
+    kgQuantidade: number,
     valorPago: number,
     data: Date;
 }
