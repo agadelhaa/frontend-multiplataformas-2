@@ -1,11 +1,11 @@
 <template>
-       <BarraMenu />
- 
-       
-        <div class="campo-foto">
+    <BarraMenu />
+
+
+    <div class="campo-foto">
         <img src="../assets/logo-zeus.jpg" alt="logo do zeus" class="foto-main">
-        </div>
-</template> 
+    </div>
+</template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
@@ -15,58 +15,65 @@ import AtualizarRacao from './AtualizarRacao.vue'
 import Dropdown from 'primevue/dropdown';
 
 export default defineComponent({
-components:{
- BarraMenu
-},
-emits:['aoTemaAlterado'],
+    components: {
+        BarraMenu
+    },
+    emits: ['aoTemaAlterado'],
     data() {
         return {
             selectedCity: null,
             item: [
-               'RAÇÃO' ,
-                'PRODUTO DE LIMPEZA' ,
+                'RAÇÃO',
+                'PRODUTO DE LIMPEZA',
                 'VETERINARIO',
-                'BRINQUEDOS' ,  
-                
-                
+                'BRINQUEDOS',
+
+
             ],
             itemSelcionado: '',
             exibirModal: false,
             modoEscuro: false
         };
-    
-    },
-methods:{
-    exibirItem(item: string){
-        this.itemSelcionado = item;
-        if(item === 'RAÇÃO'){
-            this.exibirModal = true
-        }
-    },
-    exibirCadastro(){
-        this.exibirModal = true
-    },
 
-}, 
-computed:{
-    textoBotao(){
-        if(this.modoEscuro){
-            return 'Desativar modo escuro'
+    },
+    methods: {
+        exibirItem(item: string) {
+            this.itemSelcionado = item;
+            if (item === 'RAÇÃO') {
+                this.exibirModal = true
+            }
+        },
+        exibirCadastro() {
+            this.exibirModal = true
+        },
+
+    },
+    computed: {
+        textoBotao() {
+            if (this.modoEscuro) {
+                return 'Desativar modo escuro'
+            }
+            return 'Ativar modo escuro'
         }
-        return 'Ativar modo escuro'
     }
-}
 });
 </script>
 <style scoped>
-.campo-foto{
+.campo-foto {
     display: flex;
     justify-content: center;
     margin-bottom: 78px;
 }
 
-.foto-card{
+.foto-card {
     width: 10%;
 }
 
+
+@media screen and (max-width: 767px) {
+
+    .campo-foto {
+        display: none;
+    }
+}
 </style>

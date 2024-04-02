@@ -1,47 +1,36 @@
 <template>
   <BarraMenu />
   <div class="lista">
-
     <div class="card p-fluid tabela">
       <DataTable v-model:editingRows="editingRows" paginator :rows="10" :value="item" editMode="row" dataKey="id"
-        @row-edit-save="onRowEditSave" style="padding: 10px 20px;">
-        <Column field="id" header="Código" style="width: 20%;">
-
-        </Column>
-        <Column field="nome" sortable header="Nome" style="width: 20%">
+        @row-edit-save="onRowEditSave" style="padding: 10px 20px; overflow-x: auto;">
+        <Column field="id" header="Código" style="width: 20%; min-width: 100px;"></Column>
+        <Column field="nome" sortable header="Nome" style="width: 20%; min-width: 100px;">
           <template #editor="{ data, field }">
             <InputText v-model="data[field]" />
           </template>
         </Column>
-        <Column field="kqQuantidade" header="Quantidade (kg)" style="width: 20%;">
+        <Column field="kqQuantidade" header="Quantidade (kg)" style="width: 20%; min-width: 100px;">
           <template #editor="{ data, field }">
             <InputNumber v-model="data[field]" optionLabel="label" optionValue="value" placeholder="Select a Status" />
-
-
           </template>
-
         </Column>
-        <Column field="valorPago" header="Valor R$" style="width: 20%">
+        <Column field="valorPago" header="Valor R$" style="width: 20%; min-width: 100px;">
           <template #editor="{ data, field }">
-
             <InputNumber v-model="data[field]" mode="currency" currency="BRL" locale="pt-BR" />
           </template>
-
         </Column>
         <Column field="dataCompra" header="Data" style="min-width: 200px" :body="formatDateColumn">
           <template #editor="{ data, field }">
-
             <InputMask id="basic" v-model="data[field]" placeholder="99/99/9999" mask="99/99/9999"
               slotChar="dd/mm/yyyy" />
-
           </template>
         </Column>
-        <Column header="Atualizar" :rowEditor="true" style="width: 10%;text-align: center; min-width: 8rem;"
-          bodyStyle="text-align:center">
-        </Column>
+        <Column header="Atualizar" :rowEditor="true" style="width: 10%; text-align: center; min-width: 8rem;"
+          bodyStyle="text-align: center;"></Column>
         <Column header="Excluir" style="min-width: 20%;">
           <template #body="{ data }">
-            <div class="card flex justify-content-center ">
+            <div class="card flex justify-content-center">
               <Button @click="abrirDialog(data)"><i class="pi pi-trash" style="color: slateblue"></i></Button>
               <Dialog v-model:visible="visible" modal header="Tem certeza que deseja excluir o item ?"
                 class="dialog-cancelar" :style="{ width: '30rem;', height: '10rem;', color: 'red' }">
@@ -56,10 +45,8 @@
           </template>
         </Column>
       </DataTable>
-
     </div>
   </div>
-
 
 
 
@@ -141,7 +128,7 @@ export default defineComponent({
             mensagem = 'Ração salva!'
             alert(this.racao.data)
             console.log();
-            
+
           }
           catch (error) {
             mensagem = 'Ocorreu um erro ao salvar o seu produto'
@@ -253,6 +240,7 @@ export default defineComponent({
 
   .tabela {
     width: 100%;
+    margin-top: 20px;
   }
 }
 </style>

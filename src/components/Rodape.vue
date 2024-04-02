@@ -25,9 +25,15 @@ import { defineComponent } from 'vue';
   <style scoped>
     .fotter-final{
     background-color: black;
-    height: 6rem;
+    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    }
+
+    @media screen and (max-width: 767px) {
+    .fotter-final{
+      height: 3rem;
+    }
     }
   </style>
