@@ -30,7 +30,8 @@ import { defineComponent } from 'vue';
     align-items: center;
     justify-content: center;
     position: absolute;
-    bottom: 0
+    width: 100%;
+    bottom: 0;
     }
 
     @media screen and (max-width: 767px) {
