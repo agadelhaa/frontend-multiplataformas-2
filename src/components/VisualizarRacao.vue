@@ -157,7 +157,11 @@ export default defineComponent({
       console.log(racoes);
 
     },
-
+    formatDateColumn(data: Date) {
+      // Converte a data do formato YYYY/MM/DD para DD/MM/YYYY antes de exibi-la
+      //     const formattedDate = format(data, 'dd/MM/yyyy');
+      //   return formattedDate;
+    }
 
 
   },
