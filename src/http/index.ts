@@ -37,9 +37,8 @@ export async function obterRacao():Promise<ListarRacao> {
     
             return resposta.data as string;
         } catch (error) {
-            // Se ocorrer algum erro durante a chamada da API, você pode tratá-lo aqui
             console.error('Erro ao atualizar a ração:', error);
-            throw error; // Você também pode lançar o erro novamente para lidar com ele em outro lugar
+            throw error;
         }
     }
 

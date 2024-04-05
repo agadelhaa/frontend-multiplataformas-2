@@ -31,6 +31,7 @@ export default defineComponent({
     data() {
         return {
             itens: ['RAÇÃO',
+                   
             ]
         }
     }
@@ -80,6 +81,9 @@ export default defineComponent({
     .card-item {
         width: 50%;
         height: 14rem;
+    }
+    .cards{
+        height: auto;
     }
 }
 </style>

@@ -6,20 +6,18 @@
     justify-content: center;">
         <Button label=" Cadastrar" @click="visible = true" class="cadastro" />
 
-        <Dialog v-model:visible="visible" modal :pt="{
-            root: 'border-none',
+        <Dialog v-model:visible="visible" modal style="width: 50%; display: flex;
+        justify-content: center;
+        align-items: center;
+        padding:2% 0%;"
+         :pt="{
+            
             mask: {
-                style: 'backdrop-filter: blur(2px)'
+            
             }
         }" class="center-dialog">
             <template #container="">
-                <div class="flex flex-column px-5 py-5 gap-4" style="border-radius: 12px; display: flex;
-                justify-content:center;
-                width: 50;">
-                    <svg width="35" height="40" viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="block mx-auto">
-
-                    </svg>
+ 
                     <div class="inline-flex flex-column gap-2">
                         <div class="cadastro-componente-1">
                             <div class="componente-cadastro-1">
@@ -43,7 +41,7 @@
                                         style="font-size: 1rem"></i></label>
 
                                 <InputNumber v-model="racao.valorPago" mode="currency" currency="BRL" :min="0"
-                                    class="input-componente" :class="{ 'input-vazio': !racao.valorPago }" />
+                                :minFractionDigits="2" class="input-componente" :class="{ 'input-vazio': !racao.valorPago }" />
 
                             </div>
                             <div class="componente-cadastro-data">
@@ -56,14 +54,14 @@
                         </div>
 
 
-                        <div class="flex align-items-center gap-3">
+                        <div class="flex align-items-center gap-3 botoes">
                             <Button label="Cancelar" @click="cancelar" text
-                                class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"></Button>
+                                class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
                             <Button label="Salvar" @click="salvarRacao" text
-                                class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"></Button>
+                                class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 enviar" ></Button>
                         </div>
                     </div>
-                </div>
+               
             </template>
         </Dialog>
     </div>
@@ -141,6 +139,16 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+.center-dialog {
+    width: 90%;
+    max-width: 600px; /* Defina a largura máxima desejada */
+}
+
+.botoes{
+    display: flex;
+    gap: 15px;
+}
+
 .input-vazio {
     border: 2px solid red;
 }
@@ -149,7 +157,7 @@ export default defineComponent({
 .input-componente {
     box-shadow: 0px 6px 9px #5CB9EE;
     border-radius: 6px;
-    outline: none;
+
 
 }
 
@@ -198,7 +206,7 @@ export default defineComponent({
 .enviar {
     background-color: white;
     width: 100px;
-    color: #5CB9EE;
+    color: black;
     height: 2rem;
     border: 2px solid white;
     border-radius: 8px;
@@ -246,6 +254,8 @@ export default defineComponent({
     justify-content: center;
     gap: 10px;
 }
+
+
 
 .componente-cadastro-data {
     width: 50%;
@@ -296,7 +306,7 @@ export default defineComponent({
 
 .cadastro-componente-1,
 .cadastro-componente-2 {
-    width: 100%;
+    width: 120%;
 
 }
 
@@ -311,7 +321,10 @@ export default defineComponent({
 .componente-cadastro-data {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
+    width: 44%;
 }
 
 .campo-label {
@@ -319,7 +332,30 @@ export default defineComponent({
 }
 
 .input-componente {
-    width: 80%;
+    width: 90%;
 
+}
+@media screen and (max-width: 500px) {
+
+    .cadastro-componente-1,
+.cadastro-componente-2 {
+    width: 120%;
+    display: flex;
+    flex-direction: column;
+
+}
+.componente-cadastro-1,
+.componente-cadastro-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+.componente-cadastro-data {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
 }
 </style>

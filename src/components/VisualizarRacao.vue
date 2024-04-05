@@ -10,7 +10,7 @@
             <InputText v-model="data[field]" />
           </template>
         </Column>
-        <Column field="kqQuantidade" header="Quantidade (kg)" style="width: 20%; min-width: 100px;">
+        <Column field="kgQuantidade" header="Quantidade (kg)" style="width: 20%; min-width: 100px;">
           <template #editor="{ data, field }">
             <InputNumber v-model="data[field]" optionLabel="label" optionValue="value" placeholder="Select a Status" />
           </template>
@@ -26,9 +26,10 @@
               slotChar="dd/mm/yyyy" />
           </template>
         </Column>
-        <Column header="Atualizar" :rowEditor="true" style="width: 10%; text-align: center; min-width: 8rem;"
-          bodyStyle="text-align: center;"></Column>
-        <Column header="Excluir" style="min-width: 20%;">
+        <Column header="Atualizar" :rowEditor="true" style="width: 10%; text-align: center; display:flex; min-width: 8rem;"
+          bodyStyle="text-align: center;">
+        </Column>
+        <Column header="Excluir" style="min-width: 20%; ">
           <template #body="{ data }">
             <div class="card flex justify-content-center">
               <Button @click="abrirDialog(data)"><i class="pi pi-trash" style="color: slateblue"></i></Button>
@@ -59,7 +60,6 @@ import ListarRacao from '../interface/ListarRacao';
 import { deleteItem, obterRacao } from '../http';
 import BarraMenu from './BarraMenu.vue';
 import { updateRacao } from '../http';
-import Checkbox from 'primevue/checkbox';
 import AtualizarRacao from '@/interface/AtualizarRacao';
 
 
@@ -75,9 +75,9 @@ export default defineComponent({
       racao: {
         id: 0,
         nome: '',
-        kqQuantidade: 0,
+        kgQuantidade: 0,
         valorPago: 0,
-        data: new Date(),
+        dataCompra: new Date(),
       },
       visible: false,
       products: null as null | any,
@@ -116,17 +116,20 @@ export default defineComponent({
       console.log("EVENTO: ", event);
       let data = event.newData as AtualizarRacao;
       let mensagem = '';
+    
+            
+
       switch (true) {
         case new Date(data.dataCompra) > new Date():
-
           mensagem = 'Data inválida'
+     
           break;
         default: {
           try {
             const salvar = await updateRacao(data);
-            // window.location.reload();
+            window.location.reload();
             mensagem = 'Ração salva!'
-            alert(this.racao.data)
+            
             console.log();
 
           }
@@ -154,11 +157,7 @@ export default defineComponent({
       console.log(racoes);
 
     },
-    formatDateColumn(data: Date) {
-      // Converte a data do formato YYYY/MM/DD para DD/MM/YYYY antes de exibi-la
-      //     const formattedDate = format(data, 'dd/MM/yyyy');
-      //   return formattedDate;
-    }
+
 
 
   },
