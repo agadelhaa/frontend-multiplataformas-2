@@ -2,6 +2,7 @@
     <main>
 <div class="inicio">
   <router-view></router-view>
+  <TelaCadastro/>
   <Rodape />
 </div>
 
@@ -12,13 +13,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Rodape from './components/Rodape.vue'
+import Rodape from './components/Rodape.vue';
+import TelaCadastro from './components/TelaCadastro.vue'
 
 
 export default defineComponent({
   components:{
     
     Rodape,
+    TelaCadastro
 
     
  

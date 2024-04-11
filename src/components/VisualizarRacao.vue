@@ -10,7 +10,7 @@
             <InputText v-model="data[field]" />
           </template>
         </Column>
-        <Column field="kgQuantidade" header="Quantidade (kg)" style="width: 20%; min-width: 100px;">
+        <Column field="kqQuantidade" header="Quantidade (kg)" style="width: 20%; min-width: 100px;">
           <template #editor="{ data, field }">
             <InputNumber v-model="data[field]" optionLabel="label" optionValue="value" placeholder="Select a Status" />
           </template>

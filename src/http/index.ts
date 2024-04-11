@@ -2,6 +2,7 @@ import IRacao from "@/interface/IRacao";
 import ListarRacao from "@/interface/ListarRacao";
 import AtualizarRacao from "@/interface/AtualizarRacao";
 import axios from "axios";
+import Cadastrousuario from "@/interface/CadastroUsuario";
 
 export async function cadastroRacao(salvarRacao: IRacao): Promise<string> {
     const body = JSON.stringify(salvarRacao);
@@ -47,3 +48,9 @@ export async function obterRacao():Promise<ListarRacao> {
         console.log(resposta , 'excluida');
         
     }
+export async function Cadastrousuario(salvarUsuario: Cadastrousuario): Promise<string>{
+    const body = JSON.stringify(salvarUsuario);
+    const resposta = await axios.post('http://localhost:8080/usuario',salvarUsuario);
+
+    return resposta.data as string;
+}
