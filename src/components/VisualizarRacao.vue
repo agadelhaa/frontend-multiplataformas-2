@@ -61,12 +61,14 @@ import { deleteItem, obterRacao } from '../http';
 import BarraMenu from './BarraMenu.vue';
 import { updateRacao } from '../http';
 import AtualizarRacao from '@/interface/AtualizarRacao';
+import Rodape from './Rodape.vue';
 
 
 export default defineComponent({
   name: "CadastroProduto",
   components: {
-    BarraMenu
+    BarraMenu,
+ 
 
   },
   data() {

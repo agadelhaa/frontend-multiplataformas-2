@@ -8,8 +8,7 @@
             </div>
             <div class="componentes-cadastro">
                 <form class="formulario">
-                    <InputText placeholder="Login" class="input-cadastro" />
-                    <InputText placeholder="senha" class="input-cadastro" />
+                  <CadastroLogin />
                     <div class="acoes-cadastro">
                         <EsqueceuSenha />
                         <CadastrarUsuario />
@@ -30,11 +29,13 @@ import Dialog from 'primevue/dialog';
 import { defineComponent } from 'vue';
 import CadastrarUsuario from './CadastrarUsuario.vue';
 import EsqueceuSenha from './EsqueceuSenha.vue';
+import CadastroLogin from './CadastroLogin.vue';
 
 export default defineComponent({
 components:{
    CadastrarUsuario,
-   EsqueceuSenha
+   EsqueceuSenha, 
+   CadastroLogin
 },
 data(){
     return{

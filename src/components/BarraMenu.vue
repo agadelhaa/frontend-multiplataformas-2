@@ -17,6 +17,9 @@
                 Cadastrar itens
             </router-link>
         </div>
+      <router-link to="/login">
+        SAIR
+      </router-link>
         <div class="bem-vindo">
             <h2 class="mensagem">
                 Bem vindo ao Zeus!
@@ -33,6 +36,7 @@ import { defineComponent } from 'vue';
 import CadastroRacao from './CadastroRacao.vue';
 import AtualizarRacao from './AtualizarRacao.vue'
 import Dropdown from 'primevue/dropdown';
+import { realizarLogout } from '@/http';
 
 export default defineComponent({
     components: {
@@ -57,6 +61,11 @@ export default defineComponent({
 
     },
     methods: {
+       async logout(){
+            const sair = await realizarLogout()
+            this.$router.push('/login')
+        },
+
         exibirItem(item: string) {
             this.itemSelcionado = item;
             if (item === 'RAÇÃO') {

@@ -65,15 +65,18 @@
             </template>
         </Dialog>
     </div>
+    
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Calendar from 'primevue/calendar';
 import { cadastroRacao } from '@/http';
+import Rodape from './Rodape.vue';
 export default defineComponent({
     components: {
-        Calendar
+        Calendar,
+       
     },
 
     data() {

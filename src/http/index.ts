@@ -3,6 +3,7 @@ import ListarRacao from "@/interface/ListarRacao";
 import AtualizarRacao from "@/interface/AtualizarRacao";
 import axios from "axios";
 import Cadastrousuario from "@/interface/CadastroUsuario";
+import LoginUser from "@/interface/LoginUser";
 
 export async function cadastroRacao(salvarRacao: IRacao): Promise<string> {
     const body = JSON.stringify(salvarRacao);
@@ -54,3 +55,29 @@ export async function Cadastrousuario(salvarUsuario: Cadastrousuario): Promise<s
 
     return resposta.data as string;
 }
+axios.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
+export default axios;
+
+export async function gerarLogin (user: LoginUser): Promise<string>{
+    const resposta = await axios.post('http://localhost:8080/login', user);
+    const token = resposta.data.token;
+    localStorage.setItem('token', token)
+    return token;
+}
+
+export async function realizarLogout(): Promise<void> {
+    localStorage.removeItem('token');
+  }
+      

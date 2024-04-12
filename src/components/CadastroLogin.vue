@@ -1,0 +1,125 @@
+<template>
+    <div class="tela-cadastro">
+        
+     <div class="componentes-cadastros">
+                <form  @submit.prevent="realizarLogin" class="formulario">
+                    <InputText v-model="user.login" placeholder="Login" class="input-cadastro" />
+                    <InputText type="password" v-model="user.senha" placeholder="Senha" class="input-cadastro" :feedback="false"/>
+                    <div class="login">
+
+                    
+                    <Button type="submit" class="enviar" >Login</Button>
+                 </div>
+                </form>
+               
+        </div>
+    </div>
+</template>
+<script lang="ts">
+import Dialog from 'primevue/dialog';
+import { defineComponent } from 'vue';
+import CadastrarUsuario from './CadastrarUsuario.vue';
+import EsqueceuSenha from './EsqueceuSenha.vue';
+import { gerarLogin } from '@/http';
+import Password from 'primevue/password';
+
+export default defineComponent({
+    name:'CadastroLogin',
+components:{
+    
+},
+data(){
+    return{
+        visible: false,
+        user:{
+            login: '',
+            senha: ''
+        }
+    }
+},
+methods:{
+    async realizarLogin(){
+     
+        let mensagem = '';
+        switch(true){
+            case !this.camposPreenchidos():
+             mensagem = 'Por favor, preencha todos os campos obrigatórios';
+             break;
+            case this.user.senha === null:
+                mensagem = 'Senha incorreta';
+                break;
+            
+            case this.user.login === null:
+                mensagem = 'Login não encontrado'
+                break;
+                default:{
+                        try{
+                             const logar = await gerarLogin(this.user)
+                             this.$router.push('/visualizar')
+                           }
+                           catch(error){
+                            mensagem = 'Aconteceu um erro ao realizar o login, verifique sua senha e seu login'
+                           }
+                        }
+                        alert(mensagem)
+            }
+    },
+    cancelarCadastro(){
+        this.visible = false;
+    },
+    camposPreenchidos(){
+        return this.user.login && this.user.senha
+    },
+}
+})
+</script>
+<style scoped>
+.login{
+    margin-left: 90px;
+}
+.formulario{
+   
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+   justify-content: center;
+    height: 10rem;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.input-cadastro{
+    box-shadow: 0px 6px 9px #5CB9EE;
+    border-radius: 6px;
+    height: 3rem;   
+    width: 100%;
+    outline: none;
+}
+.componentes-cadastros{
+    display: flex;
+    align-items:center; 
+    
+}
+.tela-cadastro{
+    align-items: center;
+    padding: 10% 10%;
+    display: flex;
+    justify-content: center;
+}
+.enviar {
+    background-color: black;
+    width: 100px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    height: 2rem;
+    border: 2px solid white;
+    border-radius: 8px;
+}
+.enviar:hover {
+    background-color: #5CB9EE;
+    color: white;
+}   
+
+</style>
