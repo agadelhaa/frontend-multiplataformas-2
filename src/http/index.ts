@@ -70,14 +70,30 @@ axios.interceptors.request.use(
 
 export default axios;
 
-export async function gerarLogin (user: LoginUser): Promise<string>{
-    const resposta = await axios.post('http://localhost:8080/login', user);
+export async function gerarLogin (user: LoginUser):Promise<LoginUser>{
+    const resposta = await axios.post('http://localhost:8080/login', user); 
     const token = resposta.data.token;
+    const userNovo = userLogado()
+    console.log(user + token);
+
     localStorage.setItem('token', token)
+    console.log(localStorage, 'aaaaaaa');
+    console.log(userNovo, 'sddsdsd');
+    
     return token;
 }
 
 export async function realizarLogout(): Promise<void> {
+  
     localStorage.removeItem('token');
+    console.log(localStorage);
+    
   }
-      
+
+export async function userLogado():Promise<LoginUser>{  
+const resposta = await axios.get('http://localhost:8080/login');
+console.log(resposta, 'o user aqui');
+
+return resposta.data as LoginUser
+
+}      

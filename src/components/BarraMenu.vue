@@ -22,8 +22,9 @@
       </router-link>
         <div class="bem-vindo">
             <h2 class="mensagem">
-                Bem vindo ao Zeus!
-            </h2>
+               
+        Bem-vindo, {{ user }}
+      </h2>
 
 
         </div>
@@ -36,9 +37,13 @@ import { defineComponent } from 'vue';
 import CadastroRacao from './CadastroRacao.vue';
 import AtualizarRacao from './AtualizarRacao.vue'
 import Dropdown from 'primevue/dropdown';
-import { realizarLogout } from '@/http';
+import { realizarLogout, userLogado } from '@/http';
+import LoginUser from '@/interface/LoginUser';
 
 export default defineComponent({
+    props:[
+     
+    ],
     components: {
 
     },
@@ -56,14 +61,19 @@ export default defineComponent({
             ],
             itemSelcionado: '',
             exibirModal: false,
-            modoEscuro: false
+            modoEscuro: false,
+            user: ''
         };
 
     },
     methods: {
        async logout(){
-            const sair = await realizarLogout()
-            this.$router.push('/login')
+
+        const sair = await realizarLogout()
+        console.log(sair);
+        console.log(localStorage);
+        
+        this.$router.push('/login')
         },
 
         exibirItem(item: string) {
@@ -75,6 +85,13 @@ export default defineComponent({
         exibirCadastro() {
             this.exibirModal = true
         },
+        
+        async exibirUser(){
+            const logou = await userLogado()
+            this.user = logou.login
+            console.log(this.user);
+            
+        }
 
     },
     computed: {
@@ -84,6 +101,9 @@ export default defineComponent({
             }
             return 'Ativar modo escuro'
         }
+    },
+    mounted(){
+        this.exibirUser();
     }
 });
 </script>

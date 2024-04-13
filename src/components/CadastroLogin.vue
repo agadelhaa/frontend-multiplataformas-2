@@ -13,6 +13,10 @@
                 </form>
                
         </div>
+
+    </div>
+    <div>
+     
     </div>
 </template>
 <script lang="ts">
@@ -22,19 +26,25 @@ import CadastrarUsuario from './CadastrarUsuario.vue';
 import EsqueceuSenha from './EsqueceuSenha.vue';
 import { gerarLogin } from '@/http';
 import Password from 'primevue/password';
+import BarraMenu from './BarraMenu.vue';
+import { useStore } from 'vuex';
+
 
 export default defineComponent({
     name:'CadastroLogin',
 components:{
-    
+   
 },
+
 data(){
     return{
         visible: false,
         user:{
             login: '',
-            senha: ''
-        }
+            senha: '',
+            token:''
+        },
+        logado: ''
     }
 },
 methods:{
@@ -55,7 +65,13 @@ methods:{
                 default:{
                         try{
                              const logar = await gerarLogin(this.user)
+                            
                              this.$router.push('/visualizar')
+                            // const { token, userLogado } = await gerarLogin(this.user);
+                            
+                this.$router.push('/visualizar')
+                             console.log(this.user.login);
+                             
                            }
                            catch(error){
                             mensagem = 'Aconteceu um erro ao realizar o login, verifique sua senha e seu login'
@@ -103,7 +119,7 @@ methods:{
 }
 .tela-cadastro{
     align-items: center;
-    padding: 10% 10%;
+    padding: 8% 10%;
     display: flex;
     justify-content: center;
 }

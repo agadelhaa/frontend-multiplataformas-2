@@ -124,5 +124,6 @@ methods:{
     display: flex;
     gap: 20px;
     color: blue;
+   
 }
 </style>
