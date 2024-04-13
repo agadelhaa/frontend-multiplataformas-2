@@ -46,10 +46,12 @@
           </template>
         </Column>
       </DataTable>
+      
     </div>
   </div>
 
-
+  <Button @click="valorGasto">Recalcular Soma</Button>
+<p>Total Valor Pago: {{ valorTotal }}</p>
 
 
 </template>
@@ -86,6 +88,7 @@ export default defineComponent({
       editingRows: [],
       excluirDialogVisible: false,
       selectedRowData: null as null | ListarRacao,
+      valorTotal:'0'
 
     };
   },
@@ -101,6 +104,17 @@ export default defineComponent({
         await deleteItem(id);
         window.location.reload();
       }
+    },
+    valorGasto(){
+      let valorTotal = 0;
+  for (const item of this.item) {
+    valorTotal += item.valorPago;
+  }
+  this.valorTotal = valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  
+    },
+    async calcula(event: any){
+      this.valorGasto();
     },
     cancelDelete() {
       this.selectedRowData = null;
@@ -153,10 +167,9 @@ export default defineComponent({
       return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
     },
     async listarRacao() {
-
       const racoes = await obterRacao() as unknown as ListarRacao[];
-      this.item = racoes.map(racao => ({ ...racao, selecionado: false }));
-      console.log(racoes);
+  this.item = racoes.map(racao => ({ ...racao, selecionado: false }));
+  this.valorGasto();
 
     },
     formatDateColumn(data: Date) {
