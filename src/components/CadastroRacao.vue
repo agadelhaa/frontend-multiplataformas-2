@@ -47,8 +47,11 @@
                             <div class="componente-cadastro-data">
                                 <label for="Data" class="campo-label-data">Data <i class="pi pi-calendar"
                                         style="font-size: 1rem"></i></label>
-                                <Calendar v-model="racao.dataCompra" date-format="dd/mm/yy"
-                                    class="card flex justify-content-center input-componente" showButtonBar :maxDate="maxDate" />
+                                <!-- <Calendar v-model="racao.dataCompra" date-format="dd/mm/yy"
+                                    class="card flex justify-content-center input-componente" showButtonBar :maxDate="maxDate" /> -->
+                                    <!-- <InputMask v-model="racao.dataCompra" placeholder="99/99/9999" mask="99/99/9999"
+              slotChar="dd/mm/yyyy" class=" input-componente" date-format="dd/mm/yyyy" /> -->
+                  <InputMask v-model="racao.dataCompra" placeholder="dd/mm/aaaa" mask="99/99/9999"  class="input-componente" date-format="dd/mm/yyyy" />
 
                             </div>
                         </div>
@@ -75,7 +78,7 @@ import { cadastroRacao } from '@/http';
 import Rodape from './Rodape.vue';
 export default defineComponent({
     components: {
-        Calendar,
+    
        
     },
 
@@ -139,7 +142,8 @@ export default defineComponent({
         },
         camposPreenchidos() {
             return this.racao.nome && this.racao.kgQuantidade && this.racao.valorPago;
-        }
+        },
+        
 
     },
 });

@@ -1,10 +1,15 @@
 <template>
   <BarraMenu />
   <div class="lista">
-    <div class="card p-fluid tabela">
+    <div v-if="item.length === 0" class="lista-vazia">
+      <h2 class="titulo-lista-vazia">
+        Você ainda não tem nenhuma ração cadastrada!
+      </h2>
+    </div>
+    <div v-else class="card p-fluid tabela">
       <DataTable v-model:editingRows="editingRows" paginator :rows="10" :value="item" editMode="row" dataKey="id"
         @row-edit-save="onRowEditSave" style="padding: 10px 20px; overflow-x: auto;">
-        <Column field="id" header="Código" style="width: 20%; min-width: 100px;"></Column>
+        <!-- <Column field="id" header="Código" style="width: 20%; min-width: 100px;"></Column> -->
         <Column field="nome" sortable header="Nome" style="width: 20%; min-width: 100px;">
           <template #editor="{ data, field }">
             <InputText v-model="data[field]" />
@@ -45,12 +50,14 @@
             </div>
           </template>
         </Column>
+            
+
       </DataTable>
       
     </div>
+    <p>Total Valor Pago: {{ valorTotal }}</p>
   </div>
 
-<p>Total Valor Pago: {{ valorTotal }}</p>
 
 
 </template>
@@ -176,7 +183,8 @@ export default defineComponent({
   },
   created() {
     this.listarRacao();
-  }
+  },
+
 });
 </script>
 
@@ -190,6 +198,19 @@ export default defineComponent({
           margin-top: 8%;
           width: 108%;
           position: absolute;
+        }
+
+        .lista-vazia{
+          width: 30%;
+          display: flex;
+          height: 2rem;
+          justify-content: center;
+          align-items: center;
+          margin: 12% 16%;
+        }
+        .titulo-lista-vazia{
+          color: grey;
+          font-size: 24px;
         }
 
         .dialog-cancelar {
