@@ -2,21 +2,24 @@
     <BarraMenu />
 
 
-    <div class="campo-foto">
-        <img src="../assets/logo-zeus.jpg" alt="logo do zeus" class="foto-main">
-    </div>
+   <BarraPerfil />
+   <VisualizarRacao />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import BarraMenu from './BarraMenu.vue'
+import BarraMenu from './BarraMenu.vue';
+import VisualizarRacao from './VisualizarRacao.vue';
+import BarraPerfil from './BarraPerfil.vue';
 import CadastroRacao from './CadastroRacao.vue';
 import AtualizarRacao from './AtualizarRacao.vue'
 import Dropdown from 'primevue/dropdown';
 
 export default defineComponent({
     components: {
-        BarraMenu
+        BarraMenu,
+        BarraPerfil,
+        VisualizarRacao
     },
     emits: ['aoTemaAlterado'],
     data() {

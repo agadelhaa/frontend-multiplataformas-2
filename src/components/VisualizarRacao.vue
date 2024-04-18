@@ -10,7 +10,7 @@
             <InputText v-model="data[field]" />
           </template>
         </Column>
-        <Column field="kqQuantidade" header="Quantidade (kg)" style="width: 20%; min-width: 100px;">
+        <Column field="kgQuantidade" header="Quantidade (kg)" style="width: 20%; min-width: 100px;">
           <template #editor="{ data, field }">
             <InputNumber v-model="data[field]" optionLabel="label" optionValue="value" placeholder="Select a Status" />
           </template>
@@ -50,7 +50,6 @@
     </div>
   </div>
 
-  <Button @click="valorGasto">Recalcular Soma</Button>
 <p>Total Valor Pago: {{ valorTotal }}</p>
 
 
@@ -69,7 +68,7 @@ import Rodape from './Rodape.vue';
 export default defineComponent({
   name: "CadastroProduto",
   components: {
-    BarraMenu,
+    
  
 
   },
@@ -135,12 +134,8 @@ export default defineComponent({
     
             
 
-      switch (true) {
-        case new Date(data.dataCompra) > new Date():
-          mensagem = 'Data inválida'
      
-          break;
-        default: {
+     
           try {
             const salvar = await updateRacao(data);
             window.location.reload();
@@ -150,13 +145,12 @@ export default defineComponent({
 
           }
           catch (error) {
-            mensagem = 'Ocorreu um erro ao salvar o seu produto'
+            mensagem = 'Verifique sua data'
           }
+          alert(mensagem)
+        
 
-        }
-
-      }
-      alert(mensagem)
+      
 
 
 
@@ -186,79 +180,83 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.lista {
-  height: 30rem;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 21px;
-}
+        <style scoped>
+        .lista {
+          height: 30rem;
+          display: flex;
+          /* justify-content: center; */
+          margin-bottom: 21px;
+          margin-left: 23%;
+          margin-top: 8%;
+          width: 108%;
+          position: absolute;
+        }
 
-.dialog-cancelar {
-  background-color: red
-}
+        .dialog-cancelar {
+          background-color: red
+        }
 
-.tabela {
-  box-shadow: 0px 0px 21px 4px aqua;
-  width: 70%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
+        .tabela {
+          box-shadow: 0px 0px 21px 4px aqua;
+          width: 70%;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
 
-.cancela-item {
-  display: flex;
-  gap: 15px;
-  padding: 0px 5px;
-  justify-content: center;
-}
+        .cancela-item {
+          display: flex;
+          gap: 15px;
+          padding: 0px 5px;
+          justify-content: center;
+        }
 
-.excluir {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  width: 100px;
-  color: red;
-  height: 2rem;
-  border: 2px solid white;
-  border-radius: 8px;
+        .excluir {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          justify-content: center;
+          background-color: white;
+          width: 100px;
+          color: red;
+          height: 2rem;
+          border: 2px solid white;
+          border-radius: 8px;
 
-}
+        }
 
-.excluir:hover {
-  background-color: red;
-  color: white;
-}
+        .excluir:hover {
+          background-color: red;
+          color: white;
+        }
 
-.cancelar {
-  background-color: white;
-  width: 100px;
-  color: #5CB9EE;
-  height: 2rem;
-  border: 2px solid white;
-  border-radius: 8px;
-}
+        .cancelar {
+          background-color: white;
+          width: 100px;
+          color: #5CB9EE;
+          height: 2rem;
+          border: 2px solid white;
+          border-radius: 8px;
+        }
 
-.cancelar:hover {
-  background-color: #5CB9EE;
-  color: white;
-}
+        .cancelar:hover {
+          background-color: #5CB9EE;
+          color: white;
+        }
 
-@media screen and (max-width: 768px) {
-  .tabela {
-    width: 90%;
-  }
-}
+        @media screen and (max-width: 768px) {
+          .tabela {
+            width: 90%;
+          }
+        }
 
-@media screen and (max-width: 576px) {
-  .lista {
-    height: auto;
-  }
+        @media screen and (max-width: 576px) {
+          .lista {
+            height: auto;
+          }
 
-  .tabela {
-    width: 100%;
-    margin-top: 20px;
-  }
-}
-</style>
+          .tabela {
+            width: 100%;
+            margin-top: 20px;
+          }
+        }
+        </style>

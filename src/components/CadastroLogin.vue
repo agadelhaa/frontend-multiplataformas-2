@@ -66,10 +66,9 @@ methods:{
                         try{
                              const logar = await gerarLogin(this.user)
                             
-                             this.$router.push('/visualizar')
                             // const { token, userLogado } = await gerarLogin(this.user);
                             
-                this.$router.push('/visualizar')
+                this.$router.push('/')
                              console.log(this.user.login);
                              
                            }

@@ -7,23 +7,24 @@ import CardsItens from "@/components/CardsItens.vue";
 import { RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
 import CadastroLogin from "@/components/CadastroLogin.vue";
 import TelaCadastro from "@/components/TelaCadastro.vue";
+import BarraMenu from "@/components/BarraMenu.vue";
 
 
 const rotas: RouteRecordRaw [] = [{
     path:'/',
-    name:'TelaPrincipal',
-    component: TelaPrincipal
+    name:'BarraMenu',
+    component: BarraMenu
 },
-{
-    path:'/cadastrar',
-    name:'CadastrarProduto',
-    component:CardsItens
-},
-{
-    path:'/visualizar',
-    name:'VisualizarProduto',
-    component:VisualizarRacao
-},
+// {
+//     path:'/cadastrar',
+//     name:'CadastrarProduto',
+//     component:CardsItens
+// },
+// {
+//     path:'/visualizar',
+//     name:'VisualizarProduto',
+//     component:VisualizarRacao
+// },
 {
     path:'/login',
     name:'TelaCadastro',
