@@ -8,6 +8,7 @@ import { RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
 import CadastroLogin from "@/components/CadastroLogin.vue";
 import TelaCadastro from "@/components/TelaCadastro.vue";
 import BarraMenu from "@/components/BarraMenu.vue";
+import AtualizarUser from "@/components/AtualizarUser.vue";
 
 
 const rotas: RouteRecordRaw [] = [{
@@ -15,16 +16,12 @@ const rotas: RouteRecordRaw [] = [{
     name:'BarraMenu',
     component: BarraMenu
 },
-// {
-//     path:'/cadastrar',
-//     name:'CadastrarProduto',
-//     component:CardsItens
-// },
-// {
-//     path:'/visualizar',
-//     name:'VisualizarProduto',
-//     component:VisualizarRacao
-// },
+{
+    path:'/atualizar',
+    name:'AtualizarUser',
+    component:AtualizarUser
+},
+
 {
     path:'/login',
     name:'TelaCadastro',

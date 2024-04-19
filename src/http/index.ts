@@ -4,6 +4,8 @@ import AtualizarRacao from "@/interface/AtualizarRacao";
 import axios from "axios";
 import Cadastrousuario from "@/interface/CadastroUsuario";
 import LoginUser from "@/interface/LoginUser";
+import AtualizarUser from "@/interface/AtualizarUser";
+import atualizarUsuario from "@/interface/AtualizacaoUsuario";
 
 export async function cadastroRacao(salvarRacao: IRacao): Promise<string> {
     const body = JSON.stringify(salvarRacao);
@@ -86,3 +88,37 @@ console.log(resposta, 'o user aqui');
 return resposta.data as LoginUser
 
 }      
+export async function verificarUsuarioLogado(dadosAtualizados: AtualizarUser) {
+    try {
+        const usuarioLogado = await userLogado();
+        console.log('Usuário logado:', usuarioLogado);
+
+        if (usuarioLogado) {
+            // Crie um objeto com os dados do usuário que deseja atualizar
+
+            // Faz a requisição PUT para atualizar os dados do usuário
+            const resposta = await axios.put('http://localhost:8080/user', dadosAtualizados);
+            console.log(resposta);
+
+            // Retorna os dados atualizados, se necessário
+            return resposta.data;
+        }
+    } catch (error) {
+        console.error('Erro ao verificar usuário logado:', error);
+        // Lide com o erro, exiba uma mensagem para o usuário, etc.
+    }
+}
+export async function updateUsuario(atualizarUsuario: atualizarUsuario): Promise<string> {
+    try {            
+        const resposta = await axios.put('http://localhost:8080/racao', JSON.stringify(atualizarUsuario), {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return resposta.data as string;
+    } catch (error) {
+        console.error('Erro ao atualizar a ração:', error);
+        throw error;
+    }
+}

@@ -28,7 +28,7 @@
                             </div>
                             <div class="componente-cadastro-2">
                                 <label for="" class="campo-label">Quantidade (kg)</label>
-                                <InputNumber v-model="racao.kgQuantidade" invalid mode="decimal" :min="0"
+                                <InputNumber mode="decimal" v-model="racao.kgQuantidade" invalid  :min="0"
                                     class="input-componente" :class="{ 'input-vazio': !racao.kgQuantidade }" />
 
 

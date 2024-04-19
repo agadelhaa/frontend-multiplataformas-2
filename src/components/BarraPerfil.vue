@@ -20,9 +20,9 @@
         <Button type="button" icon="pi pi-cog" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
         <Menu ref="menu" id="overlay_menu"  :model="items" :popup="true" />
     </div>
+   
       </div>
-  
-  
+    
       </main>
 </template>
 <script lang="ts">
@@ -30,23 +30,35 @@ import { defineComponent } from 'vue';
 
 import Menu from 'primevue/menu';
 
-import { realizarLogout, userLogado } from '@/http';
+import { realizarLogout, userLogado, verificarUsuarioLogado } from '@/http';
+import AtualizarUser from './AtualizarUser.vue';
 
 
 export default defineComponent({
     name:'BarraPerfil',
+    components:{
+ 
+    },
     data(){
         return{
             user: '',
             items: [
             {
                     label: 'Sair',
-                    command: this.logout // Corrigido para command
-                },  
-            ]
+                    command: this.logout
+                },{
+                    label: 'Atualizar suas informações',
+                    icon: 'pi pi-icon',
+                    command: this.atualizarUser
+                } 
+            ],
+            atualizar: false
         }
     },
     methods:{
+         async atualizarUser(){
+            this.$router.push('/atualizar')
+        },
             
         async exibirUser(){
             const logou = await userLogado()

@@ -1,5 +1,5 @@
 <template>
-  <BarraMenu />
+  <!-- <BarraMenu /> -->
   <div class="lista">
     <div v-if="item.length === 0" class="lista-vazia">
       <h2 class="titulo-lista-vazia">
@@ -17,7 +17,7 @@
         </Column>
         <Column field="kgQuantidade" header="Quantidade (kg)" style="width: 20%; min-width: 100px;">
           <template #editor="{ data, field }">
-            <InputNumber v-model="data[field]" optionLabel="label" optionValue="value" placeholder="Select a Status" />
+            <InputNumber v-model="data[field]" optionLabel="label" optionValue="value" />
           </template>
         </Column>
         <Column field="valorPago" header="Valor R$" style="width: 20%; min-width: 100px;">
@@ -53,12 +53,12 @@
             
 
       </DataTable>
+      <p class="valor-gasto" >Valor gasto: {{ valorTotal }}</p>
       
     </div>
-    <p>Total Valor Pago: {{ valorTotal }}</p>
+   
   </div>
-
-
+ 
 
 </template>
 
@@ -198,6 +198,9 @@ export default defineComponent({
           margin-top: 8%;
           width: 108%;
           position: absolute;
+          /* display: flex;
+          gap: 10%;
+          flex-direction: column; */
         }
 
         .lista-vazia{
@@ -243,6 +246,9 @@ export default defineComponent({
           border: 2px solid white;
           border-radius: 8px;
 
+        }
+        .valor-gasto{
+          padding: 2% 2%;
         }
 
         .excluir:hover {
