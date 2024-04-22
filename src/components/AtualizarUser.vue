@@ -15,6 +15,9 @@
         </div>
         </div>
                 <div class="tela-cadastro">
+                    <h2 class="titulo-update-login">
+                        Atualizar seu login ou senha!
+                    </h2>
                 <div class="cadastro-componente-1">
                     <div class="componente-cadastro-1">
                         
@@ -33,6 +36,9 @@
                 </div>
           </div>
           <div class="tela-cadastro-usuario">
+            <h2 class="titulo-update-login">
+                        Atualizar seu login ou senha!
+                    </h2>
           <div class="cadastro-componente-1">
                     <div class="componente-cadastro-1">
                         <!-- <label for="nome-produto" class="campo-label">Nome</label> -->
@@ -233,12 +239,14 @@ import { gerarLogin } from '@/http';
     align-items: center;
     padding: 10% 10%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     }
     .tela-cadastro-usuario{
     align-items: center;
     padding: 10% 0%;
     display: flex;
+   
     justify-content: center;
     }
     .cadastro{

@@ -23,7 +23,7 @@ background-color: white;"
                     </div>
                     <div class="componente-cadastro-2">
                         <!-- <label for="" class="campo-label">Idade</label> -->
-                        <InputNumber v-model="usuario.idade" invalid mode="decimal" :min="0" class="input-cadastros" placeholder="Idade" />
+                        <input type="number" v-model="usuario.idade" invalid mode="decimal" :min="0" class="input-cadastros" placeholder="Idade" />
                     </div>
                     <div class="componente-cadastro-3">
                         <InputText v-model="usuario.telefone"  placeholder="99-999999" class="input-cadastros" />
@@ -167,6 +167,7 @@ methods:{
     height: 2rem;   
     width: 90%;
     background-color: white;
+    outline: none;
 }
 .cadastro-componente-1,.cadastro-componente-2,.cadastro-componente-3{
     display: flex;

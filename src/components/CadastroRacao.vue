@@ -40,7 +40,7 @@
                                 <label for="valor-pago" class="campo-label">Valor <i class="pi pi-dollar"
                                         style="font-size: 1rem"></i></label>
 
-                                <InputNumber v-model="racao.valorPago" mode="currency" currency="BRL" :min="0"
+                                <InputNumber v-model="racao.valorPago" mode="currency" currency="BRL" locale="pt-BR" :min="0"
                                 :minFractionDigits="2" class="input-componente" :class="{ 'input-vazio': !racao.valorPago }" />
 
                             </div>
@@ -51,7 +51,7 @@
                                     class="card flex justify-content-center input-componente" showButtonBar :maxDate="maxDate" /> -->
                                     <!-- <InputMask v-model="racao.dataCompra" placeholder="99/99/9999" mask="99/99/9999"
               slotChar="dd/mm/yyyy" class=" input-componente" date-format="dd/mm/yyyy" /> -->
-                  <InputMask v-model="racao.dataCompra" placeholder="dd/mm/aaaa" mask="99/99/9999"  class="input-componente" date-format="dd/mm/yyyy" />
+                  <InputMask v-model="racao.dataCompra" placeholder="dd/mm/aaaa" mask="99/99/9999"  class="input-componente" date-format="dd/mm/yy" />
 
                             </div>
                         </div>
@@ -123,7 +123,7 @@ export default defineComponent({
                         mensagem = 'Ração salva!'
                     }
                     catch (error) {
-                        mensagem = 'Ocorreu um erro ao salvar o seu produto'
+                        mensagem = 'Ocorreu um erro ao salvar o seu produto, verifique se os campos estão preenchidos corretamente'
                     }
 
                 }
