@@ -3,6 +3,7 @@
         
      <div class="componentes-cadastros">
                 <form  @submit.prevent="realizarLogin" class="formulario">
+                  
                     <InputText v-model="user.login" placeholder="Login" class="input-cadastro" />
                     <InputText type="password" v-model="user.senha" placeholder="Senha" class="input-cadastro" :feedback="false"/>
                     <div class="login">
@@ -51,34 +52,33 @@ methods:{
     async realizarLogin(){
      
         let mensagem = '';
-        switch(true){
-            case !this.camposPreenchidos():
-             mensagem = 'Por favor, preencha todos os campos obrigatórios';
-             break;
-            case this.user.senha === null:
-                mensagem = 'Senha incorreta';
-                break;
-            
-            case this.user.login === null:
-                mensagem = 'Login não encontrado'
-                break;
-                default:{
-                        try{
-                             const logar = await gerarLogin(this.user)
-                            
-                            // const { token, userLogado } = await gerarLogin(this.user);
-                            
-                this.$router.push('/')
-                             console.log(this.user.login);
-                             
-                           }
-                           catch(error){
-                            mensagem = 'Aconteceu um erro ao realizar o login, verifique sua senha e seu login'
-                           }
-                        }
-                        alert(mensagem)
+        switch (true) {
+        case !this.camposPreenchidos():
+            mensagem = 'Por favor, preencha todos os campos obrigatórios';
+            break;
+        
+        case this.user.senha === null:
+            mensagem = 'Senha incorreta';
+            break;
+
+        case this.user.login === null:
+            mensagem = 'Login não encontrado';
+            break;
+
+        default:
+            try {
+                const logar = await gerarLogin(this.user);
+                // const { token, userLogado } = await gerarLogin(this.user);
+                this.$router.push('/');
+                console.log(this.user.login);
+            } catch(error) {
+                mensagem = 'Aconteceu um erro ao realizar o login, verifique sua senha e seu login';
             }
-    },
+            break;
+    }
+
+    alert(mensagem);
+            },
     cancelarCadastro(){
         this.visible = false;
     },

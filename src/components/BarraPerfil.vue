@@ -50,6 +50,10 @@ export default defineComponent({
                     label: 'Atualizar suas informações',
                     icon: 'pi pi-icon',
                     command: this.atualizarUser
+                },{
+                    label: 'Atualizar login',
+                    icon: 'pi pi-icon',
+                    command: this.atualizarLogin
                 } 
             ],
             atualizar: false
@@ -60,6 +64,9 @@ export default defineComponent({
             this.$router.push('/atualizar')
         },
             
+        async atualizarLogin(){
+            this.$router.push('/atualizarLogin')
+        },
         async exibirUser(){
             const logou = await userLogado()
             this.user = logou.login

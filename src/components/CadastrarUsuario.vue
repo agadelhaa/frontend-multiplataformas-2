@@ -26,32 +26,31 @@ background-color: white;"
                         <input type="number" v-model="usuario.idade" invalid mode="decimal" :min="0" class="input-cadastros" placeholder="Idade" />
                     </div>
                     <div class="componente-cadastro-3">
-                        <InputText v-model="usuario.telefone"  placeholder="99-999999" class="input-cadastros" />
+                        
+                        <InputMask id="phone" v-model="usuario.telefone" mask="(99) 99999-9999" placeholder="(99) 99999-9999" class="input-cadastros" />
                     </div>
                 
                 </div>
                 <div class="cadastro-componente-2">
+                
                     <div class="componente-cadastro-1">
-                        <InputText v-model="usuario.cpf" type="text"  class="input-cadastros"  placeholder="CPF" />
-                    </div>
-                    <div class="componente-cadastro-2">
                         <InputText  v-model="usuario.email" type="text" class="input-cadastros" placeholder="Email"/>
                     </div>
-                    
-                </div>
-                
-                <div class="cadastro-componente-3">
                     <div class="componente-cadastro-1">
                         <InputText v-model="usuario.user.login" placeholder="Login" class="input-cadastros" />
                     </div>
                     <div class="componente-cadastro-2">
-                        <InputText v-model="usuario.user.senha" placeholder="Senha" class="input-cadastros" />
+
+                        <input type="password" v-model="usuario.user.senha" placeholder="Senha" class="input-cadastros"/>
                     </div>
+                    
                 </div>
+
                 <div class="flex align-items-center gap-3 botoes">
                     <Button label="Cancelar" @click="cancelarCadastro()" text
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
-                    <Button label="Salvar" @click="salvarUsuario()" text
+                    
+                        <Button label="Salvar" @click="salvarUsuario()" text :disabled="!camposPreenchidos()"
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 enviar" ></Button>
                 </div>
             </div>
@@ -60,7 +59,8 @@ background-color: white;"
 </Dialog>
 </template>
 <script lang="ts">
-import { Cadastrousuario } from '@/http';
+import { Cadastrousuario, obterLogin } from '@/http';
+import ListarUsuario from '@/interface/ListarUsuario';
 import Dialog from 'primevue/dialog';
 import { defineComponent } from 'vue';
 
@@ -75,19 +75,34 @@ data(){
             nome: '',
     idade: 0,
     email: '',
-    cpf: '',
     telefone: '',
     user:{
         login: '',
         senha: ''
     }
-        }
+        },
+      emailValido: false,
+      usuarios: [] as ListarUsuario []
     }
 },
 methods:{
    async salvarUsuario(){
-        const cadastro = await Cadastrousuario(this.usuario)
-        this.usuario.cpf ='';
+    const usuarios = await obterLogin() as ListarUsuario 
+    for(let i = 0; i<this.usuarios.length; i++){
+        const usuario = usuarios.username[i];
+        if(this.usuario.user.login === usuarios.username){
+            alert('Login já em uso')
+        }
+    }
+
+
+    if(!this.validarEmail(this.usuario.email)){
+                alert('Por favor, insira um e-mail válido.');
+                return;
+            }
+    
+
+        const cadastro = await Cadastrousuario(this.usuario)      
         this.usuario.email = '';
         this.usuario.idade = 0;
         this.usuario.telefone = '';
@@ -95,10 +110,10 @@ methods:{
         this.usuario.user.login = '';
         this.usuario.user.senha = '';
         this.visible = false;
-        alert(this.usuario.nome)
+        alert('Usuario cadastrado!')
     },
     cancelarCadastro(){
-        this.usuario.cpf ='';
+      
         this.usuario.email = '';
         this.usuario.idade = 0;
         this.usuario.telefone = '';
@@ -106,7 +121,19 @@ methods:{
         this.usuario.user.login = '';
         this.usuario.user.senha = '';
         this.visible = false;
-    }
+    },
+    camposPreenchidos(){
+    
+    return this.usuario.email && this.usuario.idade && this.usuario.telefone && 
+    this.usuario.nome && this.usuario.user.login && this.usuario.user.senha;
+    
+
+    },
+    validarEmail(email: string) {
+            // Expressão regular para validar o formato do e-mail
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
 }
 })
 </script>
@@ -196,7 +223,7 @@ methods:{
 }
 .botoes{
     display: flex;
-    gap: 15px;
+    gap: 64%;
 }
 .enviar {
     background-color: white;

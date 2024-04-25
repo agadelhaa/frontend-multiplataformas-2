@@ -9,6 +9,7 @@ import CadastroLogin from "@/components/CadastroLogin.vue";
 import TelaCadastro from "@/components/TelaCadastro.vue";
 import BarraMenu from "@/components/BarraMenu.vue";
 import AtualizarUser from "@/components/AtualizarUser.vue";
+import AtualizarSenha from "@/components/AtualizarSenha.vue";
 
 
 const rotas: RouteRecordRaw [] = [{
@@ -26,6 +27,10 @@ const rotas: RouteRecordRaw [] = [{
     path:'/login',
     name:'TelaCadastro',
     component:TelaCadastro
+},{
+    path:'/atualizarLogin',
+    name:'AtualizarSenha',
+    component:AtualizarSenha
 },
 ]
 

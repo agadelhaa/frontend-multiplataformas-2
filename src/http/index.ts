@@ -6,6 +6,9 @@ import Cadastrousuario from "@/interface/CadastroUsuario";
 import LoginUser from "@/interface/LoginUser";
 import AtualizarUser from "@/interface/AtualizarUser";
 import atualizarUsuario from "@/interface/AtualizacaoUsuario";
+import AtualizacaoUsuario from "@/interface/AtualizacaoUsuario";
+import EsqueceuSenha from "@/interface/EsqueceuSenha";
+import ListarUsuario from "@/interface/ListarUsuario";
 
 export async function cadastroRacao(salvarRacao: IRacao): Promise<string> {
     const body = JSON.stringify(salvarRacao);
@@ -18,6 +21,12 @@ export async function obterRacao():Promise<ListarRacao> {
    
     
     return resposta.data.content as ListarRacao;
+}
+export async function obterLogin():Promise<ListarUsuario> {
+    const resposta = await axios.get('http://localhost:8080/usuario');
+   
+    
+    return resposta.data.content as ListarUsuario;
 }
 
     export async function updateRacao(atualizarRacao: AtualizarRacao): Promise<string> {
@@ -108,9 +117,9 @@ export async function verificarUsuarioLogado(dadosAtualizados: AtualizarUser) {
         // Lide com o erro, exiba uma mensagem para o usuário, etc.
     }
 }
-export async function updateUsuario(atualizarUsuario: atualizarUsuario): Promise<string> {
+export async function updateUsuario(atualizarUsuario: AtualizacaoUsuario): Promise<string> {
     try {            
-        const resposta = await axios.put('http://localhost:8080/racao', JSON.stringify(atualizarUsuario), {
+        const resposta = await axios.post('http://localhost:8080/usuario/atualizar', JSON.stringify(atualizarUsuario), {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -121,4 +130,10 @@ export async function updateUsuario(atualizarUsuario: atualizarUsuario): Promise
         console.error('Erro ao atualizar a ração:', error);
         throw error;
     }
+}
+
+export async function esqueceuSenha(credenciais:EsqueceuSenha) {
+    const resposta =  await axios.post('http://localhost:8080/user', credenciais)
+
+    return resposta.data as string;
 }

@@ -1,4 +1,4 @@
-export default interface atualizarUsuario{
+export default interface AtualizacaoUsuario{
     id: number
     nome: string
     email: string

@@ -9,7 +9,8 @@
         <Dialog v-model:visible="visible" modal style="width: 50%; display: flex;
         justify-content: center;
         align-items: center;
-        padding:2% 0%;"
+        padding:2% 0%;
+        background-color: black;"
          :pt="{
             
             mask: {
@@ -47,10 +48,7 @@
                             <div class="componente-cadastro-data">
                                 <label for="Data" class="campo-label-data">Data <i class="pi pi-calendar"
                                         style="font-size: 1rem"></i></label>
-                                <!-- <Calendar v-model="racao.dataCompra" date-format="dd/mm/yy"
-                                    class="card flex justify-content-center input-componente" showButtonBar :maxDate="maxDate" /> -->
-                                    <!-- <InputMask v-model="racao.dataCompra" placeholder="99/99/9999" mask="99/99/9999"
-              slotChar="dd/mm/yyyy" class=" input-componente" date-format="dd/mm/yyyy" /> -->
+                             
                   <InputMask v-model="racao.dataCompra" placeholder="dd/mm/aaaa" mask="99/99/9999"  class="input-componente" date-format="dd/mm/yy" />
 
                             </div>
@@ -91,7 +89,7 @@ export default defineComponent({
                 nome: '',
                 kgQuantidade: 0,
                 valorPago: 0,
-                dataCompra: new Date(),
+                dataCompra:'',
                 
             },
             maxDate: new Date()
@@ -107,9 +105,7 @@ export default defineComponent({
                     mensagem = 'Por favor, preencha todos os campos obrigatórios'
                     break;
 
-                case this.racao.dataCompra > new Date():
-                    mensagem = 'Data inválida'
-                    break;
+                
 
                 default: {
                     try {
@@ -117,7 +113,7 @@ export default defineComponent({
                         
                         this.visible = false;
                         this.racao.nome = '',
-                            this.racao.dataCompra = new Date(),
+                            this.racao.dataCompra = '',
                             this.racao.kgQuantidade = 0,
                             this.racao.valorPago = 0
                         mensagem = 'Ração salva!'
@@ -134,7 +130,7 @@ export default defineComponent({
         },
         cancelar() {
             this.racao.nome = '',
-                this.racao.dataCompra = new Date(),
+                this.racao.dataCompra ='',
                 this.racao.kgQuantidade = 0,
                 this.racao.valorPago = 0
             this.visible = false;

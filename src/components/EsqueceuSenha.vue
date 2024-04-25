@@ -18,15 +18,15 @@ background-color: white;"
                 <div class="cadastro-componente-1">
                     <div class="componente-cadastro-1">
                        
-                        <InputText type="text" placeholder="Nome" class="input-cadastros"/>
+                        <InputText v-model="user.login" type="text" placeholder="Nome" class="input-cadastros"/>
                     </div>
                     <div class="componente-cadastro-2">
                        
-                        <InputText type="text" class="input-cadastros" placeholder="Email"/>
+                        <InputText v-model="user.senha" type="text" class="input-cadastros" placeholder="Email"/>
                     </div>
                           <Button label="Cancelar" @click="cancelarCadastro()" text
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
-                    <Button label="Salvar"  text
+                    <Button label="Salvar" @click="atualizarLogin()"  text
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 enviar" ></Button>
                 </div>
             </div>
@@ -35,6 +35,7 @@ background-color: white;"
     </Dialog>
 </template>
 <script lang="ts">
+import { esqueceuSenha, verificarUsuarioLogado } from '@/http';
 import Dialog from 'primevue/dialog';
 import { defineComponent } from 'vue';
 
@@ -44,13 +45,29 @@ components:{
 },
 data(){
     return{
-        visible: false
+        visible: false,
+        user:{
+            login: '',
+            senha:'',
+            
+        },
     }
 },
 methods:{
     cancelarCadastro(){
         this.visible = false;
+    },
+   async atualizarLogin(){
+    try{   
+    await esqueceuSenha(this.user);
+        alert('Senha alterada com sucesso!')
+        this.visible = false;
+        this.user.login = '';
+        this.user.senha = '';
+    }catch{
+        alert('Usuairo não encontrado')
     }
+}
 }
 })
 </script>

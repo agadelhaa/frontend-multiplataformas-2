@@ -1,4 +1,4 @@
-    <template>
+<template>
     <BarraMenu />
 
     <div class="componente">
@@ -14,43 +14,27 @@
         </div>
         </div>
         </div>
-        
-          <div class="tela-cadastro-usuario">
-            <h2 class="titulo-update-login">
+                <div class="tela-cadastro">
+                   
+                    <h2 class="titulo-update-login">
                         Atualizar seu login ou senha!
                     </h2>
-          <div class="cadastro-componente-1">
+                <div class="cadastro-componente-login">
                     <div class="componente-cadastro-1">
-                        <!-- <label for="nome-produto" class="campo-label">Nome</label> -->
-                        <InputText v-model="usuarioAtualizado.nome" type="text" placeholder="Nome" class="input-cadastros"/>
+                        
+                        <InputText v-model="user.login" type="text" placeholder="Login" class="input-cadastros"/>
                     </div>
                     <div class="componente-cadastro-2">
-                        <!-- <label for="" class="campo-label">Idade</label> -->
-                        <InputNumber v-model="usuarioAtualizado.idade" invalid mode="decimal" :min="0" class="input-cadastros" placeholder="Idade" />
+                        
+                        <InputText v-model="user.senha" type="text" class="input-cadastros" placeholder="senha"/>
                     </div>
-                    
-                
-                </div>
-                <div class="cadastro-componente-2">
-                    
-                    <div class="componente-cadastro-2">
-                        <InputText  v-model="usuarioAtualizado.email" type="text" class="input-cadastros" placeholder="Email"/>
-                    </div>
-                    <div class="componente-cadastro-3">
-                        <InputText v-model="usuarioAtualizado.telefone"  placeholder="99-999999" class="input-cadastros" />
-                    </div>
-                    
-                </div>
-                
-                <div class="cadastro-componente-3">
-                    <div class="flex align-items-center gap-3 botoes-usuario">
-                    <Button label="Cancelar" @click="cancelarCadastro()" text
+                    <div class="botoes">
+                        <Button label="Cancelar"  text
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
-                    <Button label="Salvar" @click="atualizarUsuario()"
+                    <Button label="Salvar"  text @click="realizarAtualizacao()"
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 enviar" ></Button>
                 </div>
                 </div>
-                
           </div>
           </div>
     </template>
@@ -144,13 +128,6 @@ import { gerarLogin } from '@/http';
                      alert(mensagem)
          }
  },
- async atualizarUsuario(){
-    const usuarioAtulizado = await updateUsuario(this.usuarioAtualizado)
-    console.log(usuarioAtulizado, 'deu bom');
-    console.log(this.usuarioAtualizado);
-    
-    
- },
 
  camposPreenchidos(){
      return this.user.login && this.user.senha
@@ -205,7 +182,7 @@ import { gerarLogin } from '@/http';
     align-items: center;
     gap: 100px;
     margin-bottom: 20px; */
-    width: 20%;
+    width: 22%;
     background-color: black;
     height: 43.6rem;
     display: flex;
@@ -221,17 +198,19 @@ import { gerarLogin } from '@/http';
     }
     .tela-cadastro{
     align-items: center;
-    padding: 10% 10%;
+  
     display: flex;
     flex-direction: column;
-        
+    justify-content: center;
+    width: 100%;
 
     }
     .tela-cadastro-usuario{
-        align-items: center;
-    padding: 16% 26%;
+    align-items: center;
+    padding: 10% 0%;
     display: flex;
     flex-direction: column;
+   
    
     }
     .cadastro{
@@ -284,6 +263,7 @@ import { gerarLogin } from '@/http';
     height: 2rem;   
     width: 100%;
     background-color: white;
+    padding: 10px;
     }
     .cadastro-componente-1,.cadastro-componente-2,.cadastro-componente-3{
         display: flex;
@@ -300,17 +280,19 @@ import { gerarLogin } from '@/http';
         display: flex;
     flex-direction: column;
     margin-bottom: 40px;
-    width: 100%;
+    width: 30%;
     gap: 10px;
     height: 10rem;
-    padding: 20px 10px;
-    
+  
+    justify-content: center;
+    align-items: center;
     
     }
 
     .componente-cadastro-1,.componente-cadastro-2, .componente-cadastro-3{
     display: flex;
     gap:10px;
+    width: 70%;
     }
     .separador{
     background-color: black;
@@ -326,12 +308,12 @@ import { gerarLogin } from '@/http';
     }
     .botoes{
     display: flex;
-    gap: 8px;
+    gap: 60px;
     }
     .botoes-usuario{
     display: flex;
-    gap: 50%;
-    margin-top: 10px;
+    gap: 15px;
+    margin-top: 10px
     }
     .enviar {
     background-color: white;
