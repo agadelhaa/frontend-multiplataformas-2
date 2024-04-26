@@ -53,9 +53,6 @@ methods:{
      
         let mensagem = '';
         switch (true) {
-        case !this.camposPreenchidos():
-            mensagem = 'Por favor, preencha todos os campos obrigatórios';
-            break;
         
         case this.user.senha === null:
             mensagem = 'Senha incorreta';
@@ -69,7 +66,9 @@ methods:{
             try {
                 const logar = await gerarLogin(this.user);
                 // const { token, userLogado } = await gerarLogin(this.user);
+                mensagem = 'Login realizado com sucesso!'
                 this.$router.push('/');
+            
                 console.log(this.user.login);
             } catch(error) {
                 mensagem = 'Aconteceu um erro ao realizar o login, verifique sua senha e seu login';

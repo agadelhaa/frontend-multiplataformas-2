@@ -49,7 +49,7 @@
                                 <label for="Data" class="campo-label-data">Data <i class="pi pi-calendar"
                                         style="font-size: 1rem"></i></label>
                              
-                  <InputMask v-model="racao.dataCompra" placeholder="dd/mm/aaaa" mask="99/99/9999"  class="input-componente" date-format="dd/mm/yy" />
+                  <InputMask v-model="racao.dataCompra" placeholder="dd/mm/aaaa" mask="99/99/9999"  class="input-componente" date-format="dd/mm/yy" :class="{ 'input-vazio': !racao.valorPago }" />
 
                             </div>
                         </div>
@@ -117,6 +117,7 @@ export default defineComponent({
                             this.racao.kgQuantidade = 0,
                             this.racao.valorPago = 0
                         mensagem = 'Ração salva!'
+                        window.location.reload()
                     }
                     catch (error) {
                         mensagem = 'Ocorreu um erro ao salvar o seu produto, verifique se os campos estão preenchidos corretamente'
@@ -137,7 +138,7 @@ export default defineComponent({
 
         },
         camposPreenchidos() {
-            return this.racao.nome && this.racao.kgQuantidade && this.racao.valorPago;
+            return this.racao.nome && this.racao.kgQuantidade && this.racao.valorPago && this.racao.dataCompra;
         },
         
 

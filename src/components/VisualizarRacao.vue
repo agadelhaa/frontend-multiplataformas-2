@@ -9,7 +9,6 @@
     <div v-else class="card p-fluid tabela">
       <DataTable v-model:editingRows="editingRows" paginator :rows="10" :value="item" editMode="row" dataKey="id"
         @row-edit-save="onRowEditSave" style="padding: 10px 20px; overflow-x: auto;">
-        <!-- <Column field="id" header="Código" style="width: 20%; min-width: 100px;"></Column> -->
         <Column field="nome" sortable header="Nome" style="width: 20%; min-width: 100px;">
           <template #editor="{ data, field }">
             <InputText v-model="data[field]" />
@@ -58,6 +57,25 @@
     </div>
    
   </div>
+
+  <div class="card-container">
+        <div v-for="(item, index) in item" :key="index" class="card">
+          <div class="card-header">
+            <h3 class="card-title">{{ item.nome }}</h3>
+            <span class="card-subtitle">Quantidade: {{ item.kgQuantidade }}kg</span>
+          </div>
+          <div class="card-body">
+            <p><strong>Valor:</strong> R$ {{ item.valorPago }}</p>
+            <p><strong>Data de Compra:</strong> {{ formatDateColumn(item.dataCompra) }}</p>
+          </div>
+          <div class="card-footer">
+            <button @click="abrirDialog(item)" class="btn-excluir">
+              <i class="pi pi-trash"></i> Excluir
+            </button>
+          </div>
+          </div>
+          </div>
+  
  
 
 </template>
@@ -256,6 +274,10 @@ export default defineComponent({
           color: white;
         }
 
+        .card-container{
+          display: none;
+        }
+
         .cancelar {
           background-color: white;
           width: 100px;
@@ -270,7 +292,38 @@ export default defineComponent({
           color: white;
         }
 
-        @media screen and (max-width: 768px) {
+        
+.card-container {
+  display:none;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+
+.card-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+}
+
+.card-title {
+  margin: 0;
+}
+
+.card-subtitle {
+  font-size: 14px;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-footer {
+  padding: 10px;
+  text-align: center;
+}
+
+        /* @media screen and (max-width: 768px) {
           .tabela {
             width: 90%;
           }
@@ -279,11 +332,54 @@ export default defineComponent({
         @media screen and (max-width: 576px) {
           .lista {
             height: auto;
+            width: auto;
           }
 
           .tabela {
             width: 100%;
             margin-top: 20px;
           }
+        } */
+        @media screen and (max-width: 1200px) {
+  .tabela {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .tabela {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .lista {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tabela {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .lista {
+    margin-left: 5%;
+    margin-top: 10%;
+    display: none;
+  }
+  .card-container{
+    display: flex;
+        height: 30rem;
+        margin-top: 30%;
+        margin-left: 4%;
+        overflow-x: hidden;
+        overflow-y: auto; 
+        align-items: center;
+        justify-content: center;
         }
+}
+
         </style>

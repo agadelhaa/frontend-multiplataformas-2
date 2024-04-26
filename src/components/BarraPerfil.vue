@@ -348,10 +348,14 @@ this.$router.push('/login')
         height: auto;
         margin-bottom: 0px;
     }
+    .apresentacao-perfil{
+
+        width: 100%;
+        margin-left: 0px;
+    }
 
     .logo-titulo {
-        flex-direction: column;
-        margin-bottom: 20px;
+    
         height: auto;
         width: 100%;
     }
@@ -372,8 +376,11 @@ this.$router.push('/login')
     }
 
     .bem-vindo {
-        width: auto;
+        width: 100%;
         height: auto;
+        height: auto;
+        justify-content: center;
+        margin-left: 4%;
 
     }
 }

@@ -26,7 +26,8 @@
                     </div>
                     <div class="componente-cadastro-2">
                         <!-- <label for="" class="campo-label">Idade</label> -->
-                        <InputNumber v-model="usuarioAtualizado.idade" invalid mode="decimal" :min="0" class="input-cadastros" placeholder="Idade" />
+                        <InputNumber v-model="usuarioAtualizado.idade" invalid mode="decimal" :min="0" class="input-cadastros" placeholder="Idade"
+                         />
                     </div>
                     
                 
@@ -37,7 +38,7 @@
                         <InputText  v-model="usuarioAtualizado.email" type="text" class="input-cadastros" placeholder="Email"/>
                     </div>
                     <div class="componente-cadastro-3">
-                        <InputText v-model="usuarioAtualizado.telefone"  placeholder="99-999999" class="input-cadastros" />
+                        <InputMask id="phone" v-model="usuarioAtualizado.telefone" mask="(99) 99999-9999" placeholder="(99) 99999-9999" class="input-cadastros" />
                     </div>
                     
                 </div>
@@ -155,6 +156,7 @@ import { gerarLogin } from '@/http';
  camposPreenchidos(){
      return this.user.login && this.user.senha
  },
+
     }
     })
     </script>
@@ -210,7 +212,7 @@ import { gerarLogin } from '@/http';
     height: 43.6rem;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    
 
 }
 .componente{

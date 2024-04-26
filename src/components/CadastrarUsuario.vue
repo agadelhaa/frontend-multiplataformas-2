@@ -87,19 +87,24 @@ data(){
 },
 methods:{
    async salvarUsuario(){
-    const usuarios = await obterLogin() as ListarUsuario 
-    for(let i = 0; i<this.usuarios.length; i++){
-        const usuario = usuarios.username[i];
-        if(this.usuario.user.login === usuarios.username){
-            alert('Login já em uso')
-        }
-    }
+   
 
-
+try{
     if(!this.validarEmail(this.usuario.email)){
                 alert('Por favor, insira um e-mail válido.');
                 return;
             }
+            const usuarios = await obterLogin() as unknown as ListarUsuario []
+    for(let i = 0; i<usuarios.length; i++){
+        const usuario = usuarios[i].login;
+        if(this.usuario.user.login === usuarios[i].login){
+            alert('Login já em uso')
+            return;   
+        }
+        console.log(usuario);
+       
+    }
+   
     
 
         const cadastro = await Cadastrousuario(this.usuario)      
@@ -111,6 +116,9 @@ methods:{
         this.usuario.user.senha = '';
         this.visible = false;
         alert('Usuario cadastrado!')
+}catch{
+    alert("Login ja em uso")
+}
     },
     cancelarCadastro(){
       
@@ -133,7 +141,9 @@ methods:{
             // Expressão regular para validar o formato do e-mail
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
-        }
+        },
+   
+        
 }
 })
 </script>

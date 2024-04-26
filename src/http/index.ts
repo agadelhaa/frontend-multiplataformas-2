@@ -23,7 +23,8 @@ export async function obterRacao():Promise<ListarRacao> {
     return resposta.data.content as ListarRacao;
 }
 export async function obterLogin():Promise<ListarUsuario> {
-    const resposta = await axios.get('http://localhost:8080/usuario');
+    const resposta = await axios.get('http://localhost:8080/login');
+   console.log(resposta);
    
     
     return resposta.data.content as ListarUsuario;

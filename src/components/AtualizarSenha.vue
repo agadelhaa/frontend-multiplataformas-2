@@ -7,11 +7,6 @@
         <h2 class="titulo-componente">
             Aqui você pode atualizar suas informações!
         </h2>
-        <div >
-        <router-link to="/" class="rotas" >
-            Tela principal
-        </router-link>
-        </div>
         </div>
         </div>
                 <div class="tela-cadastro">
@@ -22,16 +17,16 @@
                 <div class="cadastro-componente-login">
                     <div class="componente-cadastro-1">
                         
-                        <InputText v-model="user.login" type="text" placeholder="Login" class="input-cadastros"/>
+                        <InputText v-model="user.login" type="text" placeholder="Login / Novo login" class="input-cadastros"/>
                     </div>
                     <div class="componente-cadastro-2">
                         
-                        <InputText v-model="user.senha" type="text" class="input-cadastros" placeholder="senha"/>
+                        <InputText v-model="user.senha" type="text" class="input-cadastros" placeholder="Senha"/>
                     </div>
                     <div class="botoes">
-                        <Button label="Cancelar"  text
+                        <Button label="Cancelar"  text @click="cancelar()"
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
-                    <Button label="Salvar"  text @click="realizarAtualizacao()"
+                    <Button label="Salvar" :disabled="!camposPreenchidos()" text @click="realizarAtualizacao()"
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 enviar" ></Button>
                 </div>
                 </div>
@@ -132,6 +127,9 @@ import { gerarLogin } from '@/http';
  camposPreenchidos(){
      return this.user.login && this.user.senha
  },
+ cancelar(){
+    this.$router.push('/')
+ }
     }
     })
     </script>
@@ -187,7 +185,7 @@ import { gerarLogin } from '@/http';
     height: 43.6rem;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+   
 
 }
 .componente{
