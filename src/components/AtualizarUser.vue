@@ -7,11 +7,6 @@
         <h2 class="titulo-componente">
             Aqui você pode atualizar suas informações!
         </h2>
-        <div >
-        <router-link to="/" class="rotas" >
-            Tela principal
-        </router-link>
-        </div>
         </div>
         </div>
         
@@ -147,8 +142,8 @@ import { gerarLogin } from '@/http';
  },
  async atualizarUsuario(){
     const usuarioAtulizado = await updateUsuario(this.usuarioAtualizado)
-    console.log(usuarioAtulizado, 'deu bom');
-    console.log(this.usuarioAtualizado);
+alert('Dados cadastrais atualizados')
+this.$router.push('/');
     
     
  },
@@ -286,6 +281,7 @@ import { gerarLogin } from '@/http';
     height: 2rem;   
     width: 100%;
     background-color: white;
+    padding: 0 4px;
     }
     .cadastro-componente-1,.cadastro-componente-2,.cadastro-componente-3{
         display: flex;
@@ -362,4 +358,36 @@ import { gerarLogin } from '@/http';
     background-color: red;
     color: white;
     }
+    @media screen and (max-width: 1200px) {
+  .tela-cadastro-usuario {
+    padding: 16% 0%; /* Ajuste o padding para telas menores */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .apresentacao {
+    width: 40%; /* Reduza a largura para telas menores */
+  }
+  
+  .titulo-componente {
+    font-size: 18px; /* Reduza o tamanho da fonte para telas menores */
+  }
+  
+  .cadastro-componente-1,
+  .cadastro-componente-2,
+  .cadastro-componente-3 {
+    flex-direction: column; /* Empilhe os componentes verticalmente */
+    height: 5rem; /* Ajuste a altura automaticamente */
+    margin-left: 10%; /* Ajuste a margem */
+  }
+  
+  .botoes-usuario {
+    margin-top: 10%; /* Ajuste a margem superior */
+    gap: 6%; /* Ajuste o espaçamento entre os botões */
+  }
+  
+  .input-cadastros {
+    /* Você pode ajustar o tamanho dos inputs conforme necessário */
+  }
+}
     </style>

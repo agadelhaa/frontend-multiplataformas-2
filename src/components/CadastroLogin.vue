@@ -7,8 +7,6 @@
                     <InputText v-model="user.login" placeholder="Login" class="input-cadastro" />
                     <InputText type="password" v-model="user.senha" placeholder="Senha" class="input-cadastro" :feedback="false"/>
                     <div class="login">
-
-                    
                     <Button type="submit" class="enviar" >Login</Button>
                  </div>
                 </form>
@@ -109,6 +107,7 @@ methods:{
     height: 3rem;   
     width: 100%;
     outline: none;
+    padding: 0 4px;
 }
 .componentes-cadastros{
     display: flex;
@@ -135,5 +134,14 @@ methods:{
     background-color: #5CB9EE;
     color: white;
 }   
-
+@media screen and (max-width: 576px) {
+    .componentes-cadastros{
+        width: 90%;
+    }
+    .login{
+        margin-left: 0;
+        margin-right: 10px;
+    }
+  
+}
 </style>

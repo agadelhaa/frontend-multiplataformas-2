@@ -126,4 +126,10 @@ methods:{
     color: blue;
    
 }
+@media screen and (max-width: 576px) {
+    .acoes-cadastro{
+        font-size: 14px;
+        gap: 10px;
+    }
+}
 </style>

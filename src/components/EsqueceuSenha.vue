@@ -18,17 +18,19 @@ background-color: white;"
                 <div class="cadastro-componente-1">
                     <div class="componente-cadastro-1">
                        
-                        <InputText v-model="user.login" type="text" placeholder="Nome" class="input-cadastros"/>
+                        <InputText v-model="user.login" type="text" placeholder="Insira seu login" class="input-cadastros"/>
                     </div>
                     <div class="componente-cadastro-2">
                        
-                        <InputText v-model="user.senha" type="text" class="input-cadastros" placeholder="Email"/>
+                        <InputText v-model="user.senha" type="text" class="input-cadastros" placeholder="Nova senha"/>
                     </div>
+                    <div class="botoes">
                           <Button label="Cancelar" @click="cancelarCadastro()" text
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
                     <Button label="Salvar" @click="atualizarLogin()"  text
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 enviar" ></Button>
-                </div>
+                    </div>
+                    </div>
             </div>
        
     </template>
@@ -184,5 +186,18 @@ methods:{
 .cancelar:hover {
     background-color: red;
     color: white;
+}
+@media screen and (max-width: 576px) {
+    .cadastro-componente-1{
+        flex-direction: column;
+    }
+    .botoes{
+        width: 74%;
+        margin-left: 30px;
+    }
+    .input-cadastros{
+        width: 64%;
+        margin-left: 42px;
+    }
 }
 </style>

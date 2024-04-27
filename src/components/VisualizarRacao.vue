@@ -342,20 +342,42 @@ export default defineComponent({
         } */
         @media screen and (max-width: 1200px) {
   .tabela {
-    width: 80%;
+    width: 100%;
+        margin-left: 6%;
+  }
+  .lista{
+    margin-top: 12%;
+    width: 78%;
+    justify-content: center;
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .lista{
+    margin-top: 14%;
+        /* justify-content: center; */
+        margin-left: 20%;
+  }
+}
+/* 
 @media screen and (max-width: 992px) {
   .tabela {
     width: 90%;
   }
-}
+} */
+/* @media screen and (max-width: 700px) {
+  .lista{
+    margin-left: 24%;
+    width: 70%;
+  }
+} */
 
 @media screen and (max-width: 768px) {
   .lista {
-    flex-direction: column;
     align-items: center;
+        width: 60%;
+        margin-left: 30%;
+        
   }
 
   .tabela {
@@ -366,19 +388,19 @@ export default defineComponent({
 
 @media screen and (max-width: 576px) {
   .lista {
-    margin-left: 5%;
-    margin-top: 10%;
-    display: none;
+    margin-left: 3%;
+        margin-top: 16%;
+        width: 90%;
   }
   .card-container{
-    display: flex;
-        height: 30rem;
+    display: none;
+        height: 24rem;
         margin-top: 30%;
         margin-left: 4%;
         overflow-x: hidden;
-        overflow-y: auto; 
+        overflow-y: auto;
         align-items: center;
-        justify-content: center;
+        width: 40%;
         }
 }
 

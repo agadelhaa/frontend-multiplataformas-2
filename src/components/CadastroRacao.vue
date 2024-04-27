@@ -9,8 +9,7 @@
         <Dialog v-model:visible="visible" modal style="width: 50%; display: flex;
         justify-content: center;
         align-items: center;
-        padding:2% 0%;
-        background-color: black;"
+        padding:2% 0%;"
          :pt="{
             
             mask: {
@@ -164,6 +163,7 @@ export default defineComponent({
 .input-componente {
     box-shadow: 0px 6px 9px #5CB9EE;
     border-radius: 6px;
+    padding: 0 4px;
 
 
 }

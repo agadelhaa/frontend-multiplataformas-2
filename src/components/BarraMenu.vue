@@ -114,7 +114,13 @@ export default defineComponent({
     }
     .apresentacao{
         display: flex;
-        width: 650px;
+        margin-bottom: 62px;
+        margin-top: 144%;
+        height: auto;
+        margin-left: 14%;
+        width: 68%;
+        background-color: white;
+        box-shadow: 9px 7px 6px black;
     }
 
     .rotas {

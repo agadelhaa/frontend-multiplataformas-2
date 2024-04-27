@@ -2,7 +2,7 @@
 
                     <Button label=" Não tenho login" @click="visible = true" />
 
-<Dialog v-model:visible="visible" modal style="width: 50%; display: flex;
+<Dialog v-model:visible="visible" modal style="width: 80%; display: flex;
 justify-content: center;
 align-items: center;
 height: 20rem;
@@ -261,5 +261,18 @@ try{
 .cancelar:hover {
     background-color: red;
     color: white;
+}
+
+@media screen and (max-width: 576px) {
+.cadastro-componente-1, .cadastro-componente-2{
+flex-direction: column;
+    margin-bottom: 10px;
+}
+.enviar, .cancelar{
+    width: 80px;
+}
+.botoes{
+    gap: 16%;
+}
 }
 </style>

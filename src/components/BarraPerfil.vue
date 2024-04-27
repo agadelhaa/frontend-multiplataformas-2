@@ -3,9 +3,9 @@
              <div class="logo-titulo">
             <img src="../assets/logo-zeuus.png" alt="logo do zeus" class="logo">
             <h2 class="titulo-logo">
-                <router-link to="/" class=" rota-zeus">
+               
                     Zeus
-                </router-link>
+                    
             </h2>
         </div>
         <div class="bem-vindo">
@@ -331,15 +331,24 @@ this.$router.push('/login')
     height: 26rem;
 }
 
-@media screen and (min-width: 768px) {
-    .titulo-logo {
-        width: 30%;
-    }
-
-    .logo {
-        width: 50%;
-    }
+/* @media screen and (min-width: 1000px) {
+.bem-vindo{
+    display: flex;
+    align-items: center;
+    height: 6rem;
+    margin-left: 34%;
+    gap: 10px;
+}.apresentacao-perfil{
+    width: 58%;
+    height: 6rem;
+    background-color: white;
+    box-shadow: 9px 7px 6px black;
+    display: flex;
+    position: absolute;
+    margin-left: 20%;
 }
+} */
+
 
 /* Estilos para tela pequena */
 @media screen and (max-width: 767px) {
@@ -347,6 +356,7 @@ this.$router.push('/login')
         flex-direction: column;
         height: auto;
         margin-bottom: 0px;
+        
     }
     .apresentacao-perfil{
 
@@ -358,6 +368,7 @@ this.$router.push('/login')
     
         height: auto;
         width: 100%;
+        
     }
 
     .titulo-logo {
@@ -370,9 +381,7 @@ this.$router.push('/login')
     }
 
     .logo {
-        margin-top: 6px;
-        margin-bottom: 5px;
-        width: 50%;
+        display: none;
     }
 
     .bem-vindo {

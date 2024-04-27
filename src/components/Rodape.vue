@@ -37,6 +37,7 @@ import { defineComponent } from 'vue';
     @media screen and (max-width: 767px) {
     .fotter-final{
       height: 3rem;
+      width: 100%;
     }
     }
   </style>

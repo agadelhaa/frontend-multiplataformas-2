@@ -5,7 +5,7 @@
     <div class="apresentacao">
         <div class="conteudo-apresentacao">
         <h2 class="titulo-componente">
-            Aqui você pode atualizar suas informações!
+            Atualize suas informações!
         </h2>
         </div>
         </div>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="componente-cadastro-2">
                         
-                        <InputText v-model="user.senha" type="text" class="input-cadastros" placeholder="Senha"/>
+                        <InputText v-model="user.senha" type="text" class="input-cadastros" placeholder="Senha / Nova senha"/>
                     </div>
                     <div class="botoes">
                         <Button label="Cancelar"  text @click="cancelar()"
@@ -86,7 +86,7 @@ import { gerarLogin } from '@/http';
             
            
             await verificarUsuarioLogado(this.user)
-        
+            alert('Suas credencias foram atualizadas com sucesso!')
     
     },
     cancelarCadastro(){
@@ -108,12 +108,7 @@ import { gerarLogin } from '@/http';
              break;
              default:{
                      try{
-                        //   const logar = await gerarLogin(this.user)
-                         
-                         // const { token, userLogado } = await gerarLogin(this.user);
-                         
              this.$router.push('/')
-                          console.log(this.user.login);
                           
                         }
                         catch(error){
@@ -340,4 +335,43 @@ import { gerarLogin } from '@/http';
     background-color: red;
     color: white;
     }
+    @media screen and (max-width: 1200px) {
+  .apresentacao {
+    width: 30%; /* Reduza a largura para telas menores */
+    
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .apresentacao {
+    width: 40%; /* Reduza ainda mais a largura para telas menores */
+   
+  }
+
+  .titulo-componente {
+    font-size: 18px; /* Reduza o tamanho da fonte para telas menores */
+  }
+  .cadastro-componente-login{
+    width: 100%;
+  }
+
+  .cadastro-componente-1,
+  .cadastro-componente-2,
+  .cadastro-componente-3 {
+    flex-direction: column; /* Empilhe os componentes verticalmente */
+    height: auto; /* Ajuste a altura automaticamente */
+    margin-left: 10%; /* Ajuste a margem */
+  }
+
+  .botoes {
+ gap: 30px;
+  }
+  .cancelar, .enviar{
+    width: 80px
+  }
+
+  .input-cadastros {
+    width: 100%; /* Ajuste o tamanho dos inputs para preencher a largura */
+  }
+}
     </style>
