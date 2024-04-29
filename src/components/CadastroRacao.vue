@@ -45,7 +45,7 @@
 
                             </div>
                             <div class="componente-cadastro-data">
-                                <label for="Data" class="campo-label-data">Data <i class="pi pi-calendar"
+                                <label for="Data" class="campo-label">Data <i class="pi pi-calendar"
                                         style="font-size: 1rem"></i></label>
                              
                   <InputMask v-model="racao.dataCompra" placeholder="dd/mm/aaaa" mask="99/99/9999"  class="input-componente" date-format="dd/mm/yy" :class="{ 'input-vazio': !racao.valorPago }" />

@@ -13,7 +13,6 @@
 import { defineComponent } from 'vue';
 import CadastroRacao from './CadastroRacao.vue';
 import VisualizarRacao from './VisualizarRacao.vue';
-import { realizarLogout, userLogado } from '@/http';
 import BarraPerfil from './BarraPerfil.vue';
 export default defineComponent({
     components:{
@@ -23,44 +22,10 @@ export default defineComponent({
     },
     data() {
         return {
-            selectedCity: null,
-            item: [
-                'RAÇÃO',
-                'PRODUTO DE LIMPEZA',
-                'VETERINARIO',
-                'BRINQUEDOS',
-            ],
-            itemSelcionado: '',
-            exibirModal: false,
-            modoEscuro: false,
-            user: ''
+          
         };
     },
-    methods: {
-       async logout(){
-        const sair = await realizarLogout()
-        console.log(sair);
-        console.log(localStorage); 
-        this.$router.push('/login')
-        },
-        exibirItem(item: string) {
-            this.itemSelcionado = item;
-            if (item === 'RAÇÃO') {
-                this.exibirModal = true
-            }
-        },
-        exibirCadastro() {
-            this.exibirModal = true
-        },      
-        async exibirUser(){
-            const logou = await userLogado()
-            this.user = logou.login
-            console.log(this.user);          
-        }
-    },
-    mounted(){
-        this.exibirUser();
-    }
+    
 })
 </script>
 <style scoped>

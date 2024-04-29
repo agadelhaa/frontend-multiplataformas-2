@@ -22,7 +22,7 @@ background-color: white;"
                     </div>
                     <div class="componente-cadastro-2">
                        
-                        <InputText v-model="user.senha" type="text" class="input-cadastros" placeholder="Nova senha"/>
+                        <InputText v-model="user.senha" type="password" class="input-cadastros" placeholder="Nova senha"/>
                     </div>
                     <div class="botoes">
                           <Button label="Cancelar" @click="cancelarCadastro()" text
@@ -129,6 +129,7 @@ methods:{
     border-radius: 6px;
     height: 2rem;   
     width: 90%;
+    padding: 0 4px;
     background-color: white;
 }
 .cadastro-componente-1,.cadastro-componente-2,.cadastro-componente-3{

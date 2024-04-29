@@ -94,19 +94,6 @@ try{
                 alert('Por favor, insira um e-mail válido.');
                 return;
             }
-            const usuarios = await obterLogin() as unknown as ListarUsuario []
-    for(let i = 0; i<usuarios.length; i++){
-        const usuario = usuarios[i].login;
-        if(this.usuario.user.login === usuarios[i].login){
-            alert('Login já em uso')
-            return;   
-        }
-        console.log(usuario);
-       
-    }
-   
-    
-
         const cadastro = await Cadastrousuario(this.usuario)      
         this.usuario.email = '';
         this.usuario.idade = 0;
@@ -203,6 +190,7 @@ try{
     border-radius: 6px;
     height: 2rem;   
     width: 90%;
+    padding: 0 4px;
     background-color: white;
     outline: none;
 }
