@@ -9,8 +9,9 @@
             </div>
         
              <div class="tela-cadastro-usuario">
+                
                 <h2 class="titulo-update-login">
-                        Atualizar seu login ou senha!
+                        Atualize seus dados cadastrais.
                 </h2>
                 <div class="cadastro-componente-1">
                     <div class="componente-cadastro-1">
@@ -29,7 +30,7 @@
                     </div>     
                 </div> 
                 <div class="cadastro-componente-3">
-                    <div class="flex align-items-center gap-3 botoes-usuario">
+                    <div class="botoes-usuario">
                     <Button label="Cancelar" @click="cancelarCadastro()" text
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
                     <Button label="Salvar" @click="atualizarUsuario()"
@@ -131,7 +132,7 @@
  }
 .tela-cadastro-usuario{
     align-items: center;
-    padding: 16% 26%;
+    padding: 16% 22%;
     display: flex;
     flex-direction: column;   
 }
@@ -157,7 +158,7 @@
 }
     .botoes-usuario{
     display: flex;
-    gap: 50%;
+    gap: 222px;
     margin-top: 10px;
     }
     .enviar {

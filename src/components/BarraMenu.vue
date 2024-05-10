@@ -43,23 +43,33 @@ export default defineComponent({
 
 
 .apresentacao {
-    margin-bottom: 20px; 
+  
     width: 20%;
     background-color: black;
-    height: 43.6rem;
+    height: 100dvh;
     display: flex;
     align-items: center;
     gap: 100px;
-    margin-bottom: 20px;
+
 
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
     .apresentacao {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         margin-bottom: 0;
+        height: 4rem;
+        margin-top: 65%;
+        width: 100%;
+        position: absolute;
+        bottom: 3%;
+    
+    }
+    .apresentacao-perfil{
+        width: 100%;
+        margin-left: 0;
     }
 
     .logo-titulo {
@@ -69,27 +79,22 @@ export default defineComponent({
     }
 
     .rotas {
-        width: 70%;
+        width: 40%;
+    }
+}
+@media screen and (max-width: 720px) {
+    .apresentacao{
+        bottom: 11%;
+        
+    }
+}
+@media screen and (max-width: 500px) {
+    .apresentacao{
+        position: absolute;
+        bottom: 7%;
     }
 }
 
-@media screen and (max-width: 767px) {
-    .logo-titulo {
-        flex-direction: column;
-    }
-    .apresentacao{
-        display: flex;
-        margin-bottom: 62px;
-        margin-top: 144%;
-        height: auto;
-        margin-left: 14%;
-        width: 68%;
-        background-color: white;
-        box-shadow: 9px 7px 6px black;
-    }
 
-    .rotas {
-        width: 100%;
-        margin: 10px;
-    }
-}</style>
+
+</style>

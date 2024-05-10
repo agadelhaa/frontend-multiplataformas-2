@@ -1,6 +1,6 @@
 <template>
     <footer class="fotter-final">
-      <p>Criado por Vitor Andrade © 2024. Todos os direitos reservados. Gerado em: {{ tempoDeCarregamento }}ms</p>
+      <p class="texto-footer">Criado por Vitor Andrade © 2024. Todos os direitos reservados. Gerado em: {{ tempoDeCarregamento }}ms</p>
     </footer>
   </template>
   <script lang="ts">
@@ -29,15 +29,24 @@ import { defineComponent } from 'vue';
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: absolute;
     bottom: 0;
     width: 100%;
     }
-
+.texto-footer{
+  color: darkgray;
+  margin-top: 10px;
+}
     @media screen and (max-width: 767px) {
     .fotter-final{
-      height: 3rem;
+      height: 4rem;
       width: 100%;
     }
+    }
+  
+    @media screen and (max-width: 767px) {
+      .fotter-final{
+        position: absolute;
+      }
     }
   </style>

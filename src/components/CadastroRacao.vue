@@ -9,63 +9,67 @@
         <Dialog v-model:visible="visible" modal style="width: 50%; display: flex;
         justify-content: center;
         align-items: center;
-        padding:2% 0%;"
-         :pt="{
-            
+        padding:2% 0%;" :pt="{
+
             mask: {
-            
+
             }
         }" class="center-dialog">
             <template #container="">
- 
-                    <div class="inline-flex flex-column gap-2">
-                        <div class="cadastro-componente-1">
-                            <div class="componente-cadastro-1">
-                                <label for="nome-produto" class="campo-label">Nome do produto <i class="pi pi-pencil"
-                                        style="font-size: 1rem"></i></label>
-                                <InputText type="text" v-model="racao.nome" placeholder="Nome" class="input-componente"
-                                    :class="{ 'input-vazio': !racao.nome }" />
-                            </div>
-                            <div class="componente-cadastro-2">
-                                <label for="" class="campo-label">Quantidade (kg)</label>
-                                <InputNumber mode="decimal" v-model="racao.kgQuantidade" invalid  :min="0"
-                                    class="input-componente" :class="{ 'input-vazio': !racao.kgQuantidade }" />
 
-
-                            </div>
+                <div class="inline-flex flex-column gap-2">
+                    <div class="cadastro-componente-1">
+                        <div class="componente-cadastro-1">
+                            <label for="nome-produto" class="campo-label">Nome do produto <i class="pi pi-pencil"
+                                    style="font-size: 1rem"></i></label>
+                            <input type="text" v-model="racao.nome" placeholder="Nome"
+                                class="input-componente form-control" :class="{ 'input-vazio': !racao.nome }" />
                         </div>
-                        <div class="cadastro-componente-2">
-                            <div class="componente-cadastro-2">
+                        <div class="componente-cadastro-2">
+                            <label for="" class="campo-label">Quantidade (kg)</label>
+                            <input type="number" mode="decimal" v-model="racao.kgQuantidade" invalid :min="0"
+                                class="input-componente form-control" :class="{ 'input-vazio': !racao.kgQuantidade }" />
 
-                                <label for="valor-pago" class="campo-label">Valor <i class="pi pi-dollar"
-                                        style="font-size: 1rem"></i></label>
 
-                                <InputNumber v-model="racao.valorPago" mode="currency" currency="BRL" locale="pt-BR" :min="0"
-                                :minFractionDigits="2" class="input-componente" :class="{ 'input-vazio': !racao.valorPago }" />
-
-                            </div>
-                            <div class="componente-cadastro-data">
-                                <label for="Data" class="campo-label">Data <i class="pi pi-calendar"
-                                        style="font-size: 1rem"></i></label>
-                             
-                  <InputMask v-model="racao.dataCompra" placeholder="dd/mm/aaaa" mask="99/99/9999"  class="input-componente" date-format="dd/mm/yy" :class="{ 'input-vazio': !racao.valorPago }" />
-
-                            </div>
-                        </div>
-
-                        
-                        <div class="flex align-items-center gap-3 botoes">
-                            <Button label="Cancelar" @click="cancelar" text
-                                class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
-                            <Button label="Salvar" @click="salvarRacao" text
-                                class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 enviar" ></Button>
                         </div>
                     </div>
-               
+                    <div class="cadastro-componente-2">
+                        <div class="componente-cadastro-2">
+
+                            <label for="valor-pago" class="campo-label">Valor <i class="pi pi-dollar"
+                                    style="font-size: 1rem"></i></label>
+
+
+                            <InputNumber v-model="racao.valorPago" mode="currency" currency="BRL" locale="pt-BR"
+                                :min="0" :minFractionDigits="2" class="input-componente-valor-pago"
+                                :class="{ 'input-vazio': !racao.valorPago }" />
+
+
+                        </div>
+                        <div class="componente-cadastro-data ">
+                            <label for="Data" class="campo-label">Data Compra <i class="pi pi-calendar"
+                                    style="font-size: 1rem"></i></label>
+
+                            <InputMask v-model="racao.dataCompra" placeholder="dd/mm/aaaa" mask="99/99/9999"
+                                class="input-componente form-control" date-format="dd/mm/yy"
+                                :class="{ 'input-vazio': !racao.valorPago }" />
+
+                        </div>
+                    </div>
+
+
+                    <div class="flex align-items-center gap-3 botoes">
+                        <Button label="Cancelar" @click="cancelar" text
+                            class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
+                        <Button label="Salvar" @click="salvarRacao" text
+                            class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 enviar"></Button>
+                    </div>
+                </div>
+
             </template>
         </Dialog>
     </div>
-    
+
 </template>
 
 <script lang="ts">
@@ -75,8 +79,8 @@ import { cadastroRacao } from '@/http';
 import Rodape from './Rodape.vue';
 export default defineComponent({
     components: {
-    
-       
+
+
     },
 
     data() {
@@ -88,8 +92,8 @@ export default defineComponent({
                 nome: '',
                 kgQuantidade: 0,
                 valorPago: 0,
-                dataCompra:'',
-                
+                dataCompra: '',
+
             },
             maxDate: new Date()
         };
@@ -104,12 +108,12 @@ export default defineComponent({
                     mensagem = 'Por favor, preencha todos os campos obrigatórios'
                     break;
 
-                
+
 
                 default: {
                     try {
                         const salvar = await cadastroRacao(this.racao)
-                        
+
                         this.visible = false;
                         this.racao.nome = '',
                             this.racao.dataCompra = '',
@@ -130,7 +134,7 @@ export default defineComponent({
         },
         cancelar() {
             this.racao.nome = '',
-                this.racao.dataCompra ='',
+                this.racao.dataCompra = '',
                 this.racao.kgQuantidade = 0,
                 this.racao.valorPago = 0
             this.visible = false;
@@ -139,7 +143,7 @@ export default defineComponent({
         camposPreenchidos() {
             return this.racao.nome && this.racao.kgQuantidade && this.racao.valorPago && this.racao.dataCompra;
         },
-        
+
 
     },
 });
@@ -147,23 +151,33 @@ export default defineComponent({
 <style scoped>
 .center-dialog {
     width: 90%;
-    max-width: 600px; /* Defina a largura máxima desejada */
+    max-width: 600px;
+    /* Defina a largura máxima desejada */
+}
+.input-componente-valor-pago{
+    height: 2.5rem;
+    box-shadow: 0px 6px 9px #5CB9EE;
+    border-radius: 2px;
+    width: 90%;
 }
 
-.botoes{
+.botoes {
     display: flex;
-    gap: 15px;
+ 
 }
 
 .input-vazio {
     border: 2px solid red;
 }
 
+.input{
+    height: 2.5rem;
+}
 
 .input-componente {
     box-shadow: 0px 6px 9px #5CB9EE;
-    border-radius: 6px;
-    padding: 0 4px;
+    border-radius: 2px;
+
 
 
 }
@@ -342,27 +356,30 @@ export default defineComponent({
     width: 90%;
 
 }
+
 @media screen and (max-width: 500px) {
 
     .cadastro-componente-1,
-.cadastro-componente-2 {
-    width: 120%;
-    display: flex;
-    flex-direction: column;
+    .cadastro-componente-2 {
+        width: 120%;
+        display: flex;
+        flex-direction: column;
 
-}
-.componente-cadastro-1,
-.componente-cadastro-2 {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-}
-.componente-cadastro-data {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-}
+    }
+
+    .componente-cadastro-1,
+    .componente-cadastro-2 {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .componente-cadastro-data {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
 }
 </style>

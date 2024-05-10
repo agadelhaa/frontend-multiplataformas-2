@@ -120,7 +120,7 @@ import BarraMenu from './BarraMenu.vue';
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
-    width: 30%;
+    width: 50%;
     gap: 10px;
     height: 10rem;
     justify-content: center;
@@ -134,7 +134,7 @@ import BarraMenu from './BarraMenu.vue';
  }
 .botoes{
     display: flex;
-    gap: 60px;
+    gap: 180px;
 }
 
 .enviar {

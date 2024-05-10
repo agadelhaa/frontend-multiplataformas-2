@@ -24,6 +24,8 @@ import ConfirmationService from 'primevue/confirmationservice';
 import ConfirmPopup from 'primevue/confirmpopup';
 import Menu from 'primevue/menu';
 import Password from 'primevue/password';
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 const app = createApp(App)
   .use(PrimeVue)

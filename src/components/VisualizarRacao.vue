@@ -35,7 +35,7 @@
             <Column header="Excluir" style="min-width: 20%; ">
                <template #body="{ data }">
                    <div class="card flex justify-content-center">
-                       <Button @click="abrirDialog(data)"><i class="pi pi-trash" style="color: slateblue"></i></Button>
+                       <Button @click="abrirDialog(data)"><i class="pi pi-trash"></i></Button>
                        <Dialog v-model:visible="visible" modal header="Tem certeza que deseja excluir o item ?"
                        class="dialog-cancelar" :style="{ width: '30rem;', height: '10rem;', color: 'red' }">
                        <div class="flex justify-content-end gap-2 cancela-item">
@@ -51,6 +51,22 @@
           </DataTable>
       <p class="valor-gasto" >Valor gasto: R$ {{ valorTotal }}</p>
       </div>
+      <div class="cards-lista row">
+      <div v-for="itens in item" :key="itens.id" class="card col-md-6 mb-3">
+        <div class="card-header">
+          <h3>{{ itens.nome }}</h3>
+        </div>
+        <div class="card-body">
+          <p>Quantidade (kg): {{ itens.kgQuantidade }}</p>
+          <p>Valor R$: {{ itens.valorPago }}</p>
+          <p>Data: {{ itens.dataCompra }}</p>
+        </div>
+        <div class="card-footer">
+          <Button @click="abrirDialog(itens)" class="atualizar">Atualizar</Button>
+          <Button @click="abrirDialog(itens)" class="excluir">Excluir</Button>
+        </div>
+      </div>
+    </div>
     </div>
 </template>
 
@@ -165,16 +181,37 @@ export default defineComponent({
 </script>
 
         <style scoped>
+        .cards-lista{
+display: none;
+        }
         .lista {
           height: 30rem;
-          display: flex;
-          margin-bottom: 21px;
-          margin-left: 23%;
-          margin-top: 8%;
-          width: 108%;
-          position: absolute;
-        }
+    display: flex;
 
+    margin-left: 26%;
+    margin-top: 10%;
+    width: 100%;
+    position: absolute;
+        }
+button{
+  justify-content: center;
+  height: 2rem;
+  border: 2px solid red;
+  border-radius: 6px;
+
+}
+.pi{
+  color: black;
+}
+.pi:hover{
+
+}
+button:hover{
+  background-color: red;
+  color: white
+          
+          
+}
         .lista-vazia{
           width: 30%;
           display: flex;
@@ -242,7 +279,37 @@ export default defineComponent({
           background-color: #5CB9EE;
           color: white;
         }
+        .card-container {
+          width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    /* height: 20rem; */
+    flex-direction: column;
+    gap: 20px;
+    height: 20rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-left: 24%;
+}
 
+
+
+.card-header {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-top: 1px solid #ddd;
+}
         @media screen and (max-width: 1200px) {
   .tabela {
     width: 100%;
@@ -262,25 +329,44 @@ export default defineComponent({
   }
 }
 
-@media screen and (max-width: 768px) {
+
+
+@media screen and (max-width: 990px) {
   .lista {
     align-items: center;
         width: 60%;
-        margin-left: 30%;
+        margin-left:30%;
+        margin-top: 9%;
         
   }
 
   .tabela {
     width: 100%;
     margin-top: 20px;
+    display: none;
+
   }
+  .cards-lista{
+    display: flex;
+    height: 26rem;
+        overflow-y: auto;
+        overflow-x: hidden;
+    
+  }
+
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 720px) {
   .lista {
     margin-left: 3%;
-        margin-top: 16%;
         width: 90%;
+        margin-top: 0%
+  }
+  .cards-lista{
+    display: flex;
+    height: 16rem;
+        overflow-y: auto;
+        overflow-x: hidden;
   }
 }
 
