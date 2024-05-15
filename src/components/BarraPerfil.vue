@@ -393,5 +393,10 @@ this.$router.push('/login')
 
     }
 }
+@media screen and (max-width: 900px) {
+    .titulo-logo{
+        width: 50%;
+    }
+}
 
 </style>

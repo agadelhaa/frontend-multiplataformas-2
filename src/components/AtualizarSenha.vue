@@ -1,13 +1,7 @@
 <template>
     <BarraMenu />
     <div class="componente">
-         <div class="apresentacao">
-             <div class="conteudo-apresentacao">
-                <h2 class="titulo-componente">
-                      Atualize suas informações!
-                </h2>
-            </div>
-          </div>
+        
     <div class="tela-cadastro">               
          <h2 class="titulo-update-login">
                 Atualizar seu login ou senha!
@@ -20,10 +14,11 @@
                          <InputText v-model="user.senha" type="text" class="input-cadastros" placeholder="Senha / Nova senha"/>
                  </div>
                  <div class="botoes">
-                        <Button label="Cancelar"  text @click="cancelar()"
-                        class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
                         <Button label="Salvar" :disabled="!camposPreenchidos()" text @click="realizarAtualizacao()"
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 enviar" ></Button>
+                        <Button label="Cancelar"  text @click="cancelar()"
+                        class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
+                      
                  </div>
          </div>
      </div>
@@ -171,6 +166,12 @@ import BarraMenu from './BarraMenu.vue';
 @media screen and (max-width: 768px) {
   .apresentacao {
     width: 40%; 
+    height: 100dvh;
+  }
+
+  .tela-cadastro{
+    
+    padding: 10% 10%;
   }
 
   .titulo-componente {
@@ -179,11 +180,16 @@ import BarraMenu from './BarraMenu.vue';
   .cadastro-componente-login{
     width: 100%;
   }     
+  .componente-cadastro-1, .componente-cadastro-2{
+    width: 100%;
+  }
   .botoes {
- gap: 30px;
+ gap: 10px;
+ flex-direction:column;
+ width: 100%;
   }
   .cancelar, .enviar{
-    width: 80px
+    width: 100%;
   }
 
   .input-cadastros {

@@ -4,5 +4,5 @@ export default interface AtualizarRacao{
     nome: string,
     kgQuantidade: number,
     valorPago: number,
-    dataCompra: Date
+    dataCompra: string
 }

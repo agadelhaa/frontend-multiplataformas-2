@@ -52,7 +52,7 @@ methods:{
 <style scoped>
 .tela-cadastro{
     align-items: center;
-    padding: 10% 10%;
+    padding: 9% 10%;
     display: flex;
     justify-content: center;
 }

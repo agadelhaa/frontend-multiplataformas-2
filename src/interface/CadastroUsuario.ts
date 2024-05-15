@@ -1,6 +1,6 @@
 export default interface Cadastrousuario{
     nome: string,
-    idade: number,
+    idade: string,
     email: string,
     telefone: string,
     user:{

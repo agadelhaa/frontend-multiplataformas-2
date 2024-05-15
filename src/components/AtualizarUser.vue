@@ -1,18 +1,13 @@
     <template>
         <div class="componente">
-            <div class="apresentacao">
-                <div class="conteudo-apresentacao">
-                    <h2 class="titulo-componente">
-                         Aqui você pode atualizar suas informações!
-                    </h2>
-                </div>
-            </div>
+          
         
              <div class="tela-cadastro-usuario">
-                
-                <h2 class="titulo-update-login">
-                        Atualize seus dados cadastrais.
+                <div class="titulo-cadastro">
+                <h2 class="titulo-update-user">
+                        Atualize seus dados.
                 </h2>
+                </div>
                 <div class="cadastro-componente-1">
                     <div class="componente-cadastro-1">
                         <InputText v-model="usuarioAtualizado.nome" type="text" placeholder="Nome" class="input-cadastros"/>
@@ -31,10 +26,10 @@
                 </div> 
                 <div class="cadastro-componente-3">
                     <div class="botoes-usuario">
-                    <Button label="Cancelar" @click="cancelarCadastro()" text
-                        class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
                     <Button label="Salvar" @click="atualizarUsuario()"
                         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 enviar" ></Button>
+                        <Button label="Cancelar" @click="cancelarCadastro()" text
+                        class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
                     </div>
                 </div>
             </div>
@@ -129,6 +124,7 @@
     padding: 10% 10%;
     display: flex;
     flex-direction: column;
+
  }
 .tela-cadastro-usuario{
     align-items: center;
@@ -196,7 +192,11 @@
 
 @media screen and (max-width: 768px) {
   .apresentacao {
-    width: 40%; /* Reduza a largura para telas menores */
+  display: none;
+  }
+  .tela-cadastro-usuario{
+    height: 100dvh;
+    padding: 10% 22%;
   }
   
   .titulo-componente {
@@ -208,12 +208,25 @@
   .cadastro-componente-3 {
     flex-direction: column;
     height: 5rem; 
-    margin-left: 10%; 
+
   }
+
+
   
   .botoes-usuario {
-    margin-top: 10%;
-    gap: 6%; 
+    margin-top: 5%;
+        gap: 10px;
+        width: 100%;
+        align-items: center;
+        flex-direction: column
   }
+
+  .input-cadastros{
+    width: 100%;
+  }
+  .enviar, .cancelar{
+    width: 100%;
+  }
+
 }
 </style>
