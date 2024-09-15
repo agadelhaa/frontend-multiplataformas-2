@@ -3,7 +3,7 @@
         <div class="cadastro">
             <div class="titulo-login">
                 <h2 class="titulo">
-                    Faça o seu login!
+                    FaÃ§a o seu login!
                 </h2>
             </div>
             <div class="componentes-cadastro">

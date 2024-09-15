@@ -57,7 +57,7 @@ methods:{
             break;
 
         case this.user.login === null:
-            mensagem = 'Login não encontrado';
+            mensagem = 'Login nÃ£o encontrado';
             break;
 
         default:
