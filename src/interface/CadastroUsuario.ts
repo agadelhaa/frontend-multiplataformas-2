@@ -7,4 +7,5 @@ export default interface Cadastrousuario{
         login: string,
         senha: string
     }
+    
 }
