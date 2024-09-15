@@ -1,10 +1,10 @@
 <template>
     <main class="apresentacao-perfil">
              <div class="logo-titulo">
-            <img src="../assets/logo-zeuus.png" alt="logo do zeus" class="logo">
+            <img src="../assets/logo-pata.jpg" alt="logo do petFood" class="logo">
             <h2 class="titulo-logo">
                
-                    Zeus
+                    PetFood
                     
             </h2>
         </div>
@@ -32,6 +32,7 @@ import Menu from 'primevue/menu';
 
 import { realizarLogout, userLogado, verificarUsuarioLogado } from '@/http';
 import AtualizarUser from './AtualizarUser.vue';
+import ListarUsuario from './ListarUsuario.vue';
 
 
 export default defineComponent({
@@ -43,18 +44,23 @@ export default defineComponent({
         return{
             user: '',
             items: [
-            {
-                    label: 'Sair',
-                    command: this.logout
-                },{
-                    label: 'Atualizar suas informações',
+          {
+                    label: 'Atualizar informações',
                     icon: 'pi pi-icon',
                     command: this.atualizarUser
                 },{
                     label: 'Atualizar login',
                     icon: 'pi pi-icon',
                     command: this.atualizarLogin
-                } 
+                }
+                ,  {
+                    label: 'Usuarios',
+                    command: this.listarUsuario
+                }
+                ,  {
+                    label: 'Sair',
+                    command: this.logout
+                }
             ],
             atualizar: false
         }
@@ -62,6 +68,9 @@ export default defineComponent({
     methods:{
          async atualizarUser(){
             this.$router.push('/atualizar')
+        },
+        async listarUsuario(){
+            this.$router.push("listarUsuario")
         },
             
         async atualizarLogin(){
@@ -105,9 +114,7 @@ this.$router.push('/login')
     margin-left: 20%;
 }
 .p-menu-overlay {
-    border-bottom: 20px solid blue; /* Defina a cor e o tamanho desejado para a linha */
-    /* Ou use box-shadow para um efeito de sombra */
-    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); */
+    border-bottom: 20px solid blue;
 }
 .perfil{
     
@@ -117,7 +124,7 @@ this.$router.push('/login')
     align-items: center;
 }
 .p-menuitem {
-    width: 200px; /* Defina o tamanho desejado para os itens */
+    width: 200px;
 }
 .logo-titulo {
     display: flex;
@@ -126,7 +133,7 @@ this.$router.push('/login')
     width: 30%;
 }
 .logo {
-    width: 46%;
+    width:26%;
 
 }
 .link-rota {

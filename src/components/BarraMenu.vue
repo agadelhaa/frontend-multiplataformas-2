@@ -45,7 +45,7 @@ export default defineComponent({
 .apresentacao {
   
     width: 20%;
-    background-color: black;
+    background-color: darkgray;
     height: 100dvh;
     display: flex;
     align-items: center;
