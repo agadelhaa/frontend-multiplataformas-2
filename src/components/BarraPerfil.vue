@@ -1,7 +1,7 @@
 <template>
     <main class="apresentacao-perfil">
              <div class="logo-titulo">
-            <img src="../assets/logo-pata.jpg" alt="logo do petFood" class="logo">
+            <img src="../assets/logo-zeus.jpg" alt="logo do petFood" class="logo">
             <h2 class="titulo-logo">
                
                     PetFood
