@@ -1,6 +1,6 @@
 <template>
     <footer class="fotter-final">
-      <p class="texto-footer">Criado por Vitor Andrade © 2024. Todos os direitos reservados. Gerado em: {{ tempoDeCarregamento }}ms</p>
+      <p class="texto-footer"> © 2024. Todos os direitos reservados. Gerado em: {{ tempoDeCarregamento }}ms</p>
     </footer>
   </template>
   <script lang="ts">
