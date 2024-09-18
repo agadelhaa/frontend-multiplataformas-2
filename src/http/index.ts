@@ -9,21 +9,21 @@ import atualizarUsuario from "@/interface/AtualizacaoUsuario";
 import AtualizacaoUsuario from "@/interface/AtualizacaoUsuario";
 import EsqueceuSenha from "@/interface/EsqueceuSenha";
 import ListarUsuario from "@/interface/ListarUsuario";
-
+ const urlDeAcesso="https://zeus-production-f6c8.up.railway.app"
 export async function cadastroRacao(salvarRacao: IRacao): Promise<string> {
     const body = JSON.stringify(salvarRacao);
     // console.log(body);
-    const resposta = await axios.post('http://localhost:8080/racao', salvarRacao);
+    const resposta = await axios.post(`${urlDeAcesso}/racao`, salvarRacao);
     return resposta.data as string;
 }
 export async function obterRacao():Promise<ListarRacao> {
-    const resposta = await axios.get('http://localhost:8080/racao');
+    const resposta = await axios.get(`${urlDeAcesso}/racao`);
    
     
     return resposta.data.content as ListarRacao;
 }
 export async function obterLogin():Promise<ListarUsuario> {
-    const resposta = await axios.get('http://localhost:8080/login');
+    const resposta = await axios.get(`${urlDeAcesso}/login`);
    console.log(resposta);
    
     
@@ -32,7 +32,7 @@ export async function obterLogin():Promise<ListarUsuario> {
 
     export async function updateRacao(atualizarRacao: AtualizarRacao): Promise<string> {
         try {            
-            const resposta = await axios.put('http://localhost:8080/racao', JSON.stringify(atualizarRacao), {
+            const resposta = await axios.put(`${urlDeAcesso}/racao`, JSON.stringify(atualizarRacao), {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -46,13 +46,13 @@ export async function obterLogin():Promise<ListarUsuario> {
     }
 
     export async function deleteItem(id:number) {
-        const resposta = await axios.delete(`http://localhost:8080/racao/${id}`)
+        const resposta = await axios.delete(`urlDeAcesso/racao/${id}`)
         console.log(resposta , 'excluida');
         
     }
 export async function Cadastrousuario(salvarUsuario: Cadastrousuario): Promise<string>{
     const body = JSON.stringify(salvarUsuario);
-    const resposta = await axios.post('http://localhost:8080/usuario',salvarUsuario);
+    const resposta = await axios.post(`${urlDeAcesso}/usuario`,salvarUsuario);
 
     return resposta.data as string;
 }
@@ -72,7 +72,7 @@ axios.interceptors.request.use(
 export default axios;
 
 export async function gerarLogin (user: LoginUser):Promise<LoginUser>{
-    const resposta = await axios.post('http://localhost:8080/login', user); 
+    const resposta = await axios.post(`${urlDeAcesso}/login`, user); 
     const token = resposta.data.token;
     const userNovo = userLogado()
     console.log(user + token);
@@ -92,7 +92,7 @@ export async function realizarLogout(): Promise<void> {
   }
 
 export async function userLogado():Promise<LoginUser>{  
-const resposta = await axios.get('http://localhost:8080/login');
+const resposta = await axios.get(`${urlDeAcesso}/login`);
 console.log(resposta, 'o user aqui');
 
 return resposta.data as LoginUser
@@ -107,7 +107,7 @@ export async function verificarUsuarioLogado(dadosAtualizados: AtualizarUser) {
             // Crie um objeto com os dados do usuário que deseja atualizar
 
             // Faz a requisição PUT para atualizar os dados do usuário
-            const resposta = await axios.put('http://localhost:8080/user', dadosAtualizados);
+            const resposta = await axios.put(`${urlDeAcesso}/user`, dadosAtualizados);
             console.log(resposta);
 
             // Retorna os dados atualizados, se necessário
@@ -120,7 +120,7 @@ export async function verificarUsuarioLogado(dadosAtualizados: AtualizarUser) {
 }
 export async function updateUsuario(atualizarUsuario: AtualizacaoUsuario): Promise<string> {
     try {            
-        const resposta = await axios.post('http://localhost:8080/usuario/atualizar', JSON.stringify(atualizarUsuario), {
+        const resposta = await axios.post(`${urlDeAcesso}/usuario/atualizar`, JSON.stringify(atualizarUsuario), {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -134,7 +134,7 @@ export async function updateUsuario(atualizarUsuario: AtualizacaoUsuario): Promi
 }
 
 export async function esqueceuSenha(credenciais:EsqueceuSenha) {
-    const resposta =  await axios.post('http://localhost:8080/user', credenciais)
+    const resposta =  await axios.post(`${urlDeAcesso}/user`, credenciais)
 
     return resposta.data as string;
 }
