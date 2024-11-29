@@ -4,9 +4,15 @@
             <img src="../assets/logo-zeus.jpg" alt="logo do petFood" class="logo">
             <h2 class="titulo-logo">
                
-                    PetFood
+                    Pet+
                     
             </h2>
+        </div>
+        <div class="rotas">
+            <CadastroRacao></CadastroRacao>
+            <button v-on:click="agendarConsulta()" class="btn-rota">Agendar Consulta</button>
+            <Button v-on:click="marketplace()" class="btn-rota">Marketplace</Button>
+
         </div>
         <div class="bem-vindo">
             <h2 class="mensagem">
@@ -33,12 +39,16 @@ import Menu from 'primevue/menu';
 import { realizarLogout, userLogado, verificarUsuarioLogado } from '@/http';
 import AtualizarUser from './AtualizarUser.vue';
 import ListarUsuario from './ListarUsuario.vue';
+import CadastroRacao from './CadastroRacao.vue';
+import Marketplace from './Marketplace.vue';
+import BarraMenu from './BarraMenu.vue';
 
 
 export default defineComponent({
     name:'BarraPerfil',
     components:{
- 
+        CadastroRacao,
+       
     },
     data(){
         return{
@@ -69,12 +79,18 @@ export default defineComponent({
          async atualizarUser(){
             this.$router.push('/atualizar')
         },
+        async agendarConsulta(){
+            this.$router.push('/agenda')
+        },
         async listarUsuario(){
             this.$router.push("listarUsuario")
         },
             
         async atualizarLogin(){
             this.$router.push('/atualizarLogin')
+        },
+        async marketplace(){
+            this.$router.push('/marketplace')
         },
         async exibirUser(){
             const logou = await userLogado()
@@ -105,13 +121,20 @@ this.$router.push('/login')
 </script>
 <style scoped>
 .apresentacao-perfil{
-    width: 80%;
+    width: 100%;
     height: 6rem;
     background-color: white;
     box-shadow: 9px 7px 6px black;
     display: flex;
+    align-items: center;
     position: absolute;
-    margin-left: 20%;
+    
+}
+
+.btn-rota{
+    width: 50%;
+    height: 3rem;
+    box-shadow: 1px 1px 1px 1px black;
 }
 .p-menu-overlay {
     border-bottom: 20px solid blue;
@@ -152,7 +175,7 @@ this.$router.push('/login')
 }
 
 .rotas {
-    width: 50%;
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -199,7 +222,7 @@ this.$router.push('/login')
     display: flex;
     align-items: center;
     height: 6rem;
-    margin-left: 52%;
+    margin-left: 26%;
     gap: 10px;
 }
 

@@ -65,7 +65,7 @@ methods:{
                 const logar = await gerarLogin(this.user);
                 // const { token, userLogado } = await gerarLogin(this.user);
                 mensagem = 'Login realizado com sucesso!'
-                this.$router.push('/');
+                this.$router.push('/marketplace');
             
                 console.log(this.user.login);
             } catch(error) {

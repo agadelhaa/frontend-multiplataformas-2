@@ -154,9 +154,9 @@ export default defineComponent({
       const dataAtualizar: AtualizarRacao = {
         id: item.id,
         nome: item.nome,
-        kgQuantidade: item.kgQuantidade,
-        valorPago: item.valorPago,
-        dataCompra: item.dataCompra,
+        kg: item.kg,
+        historicoMedico: item.historicoMedico,
+        idade: item.idade,
       };
       let mensagem = ''; // Corrigido para declarar mensagem como uma variável mutável
 

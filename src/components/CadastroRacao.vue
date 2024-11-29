@@ -9,7 +9,9 @@
         <Dialog v-model:visible="visible" modal style="width: 50%; display: flex;
         justify-content: center;
         align-items: center;
-        padding:2% 0%;" :pt="{
+        padding:2% 0%;
+        background: steelblue;"
+         :pt="{
 
             mask: {
 
@@ -20,15 +22,15 @@
                 <div class="inline-flex flex-column gap-2">
                     <div class="cadastro-componente-1">
                         <div class="componente-cadastro-1">
-                            <label for="nome-produto" class="campo-label">Nome do produto <i class="pi pi-pencil"
+                            <label for="nome-produto" class="campo-label">Nome do pet <i class="pi pi-pencil"
                                     style="font-size: 1rem"></i></label>
-                            <input type="text" v-model="racao.nome" placeholder="Nome"
-                                class="input-componente form-control" :class="{ 'input-vazio': !racao.nome }" />
+                            <input type="text" v-model="pet.nome" placeholder="Nome"
+                                class="input-componente form-control" :class="{ 'input-vazio': !pet.nome }" />
                         </div>
                         <div class="componente-cadastro-2">
-                            <label for="" class="campo-label">Quantidade (kg)</label>
-                            <input type="number" mode="decimal" v-model="racao.kgQuantidade" invalid :min="0"
-                                class="input-componente form-control" :class="{ 'input-vazio': !racao.kgQuantidade }" />
+                            <label for="" class="campo-label">kg</label>
+                            <input type="number" mode="decimal" v-model="pet.kg" invalid :min="0"
+                                class="input-componente form-control" :class="{ 'input-vazio': !pet.kg }" />
 
 
                         </div>
@@ -36,23 +38,16 @@
                     <div class="cadastro-componente-2">
                         <div class="componente-cadastro-2">
 
-                            <label for="valor-pago" class="campo-label">Valor <i class="pi pi-dollar"
-                                    style="font-size: 1rem"></i></label>
+                            <label for="valor-pago" class="campo-label">doença médica</label>
 
-
-                            <InputNumber v-model="racao.valorPago" mode="currency" currency="BRL" locale="pt-BR"
-                                :min="0" :minFractionDigits="2" class="input-componente-valor-pago"
-                                :class="{ 'input-vazio': !racao.valorPago }" />
-
+                                <input type="text" v-model="pet.historicoMedico" placeholder="doença médica"
+                                class="input-componente form-control" :class="{ 'input-vazio': !pet.historicoMedico }" />
 
                         </div>
                         <div class="componente-cadastro-data ">
-                            <label for="Data" class="campo-label">Data Compra <i class="pi pi-calendar"
-                                    style="font-size: 1rem"></i></label>
-
-                            <InputMask v-model="racao.dataCompra" placeholder="dd/mm/aaaa" mask="99/99/9999"
-                                class="input-componente form-control" date-format="dd/mm/yy"
-                                :class="{ 'input-vazio': !racao.valorPago }" />
+                            <label for="Data" class="campo-label">Idade</label>
+                                <input type="number" mode="decimal" v-model="pet.idade" invalid :min="0"
+                                class="input-componente form-control" :class="{ 'input-vazio': !pet.idade }" />
 
                         </div>
                     </div>
@@ -61,7 +56,7 @@
                     <div class="flex align-items-center gap-3 botoes">
                         <Button label="Cancelar" @click="cancelar" text
                             class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 cancelar"></Button>
-                        <Button label="Salvar" @click="salvarRacao" text
+                        <Button label="Salvar" @click="salvarpet" text
                             class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10 enviar"></Button>
                     </div>
                 </div>
@@ -88,18 +83,18 @@ export default defineComponent({
 
         return {
             visible: false,
-            racao: {
+            pet: {
                 nome: '',
-                kgQuantidade: 0,
-                valorPago: 0,
-                dataCompra: '',
+                kg: 0,
+                historicoMedico: '',
+                idade: '',
 
             },
             maxDate: new Date()
         };
     },
     methods: {
-        async salvarRacao() {
+        async salvarpet() {
 
 
             let mensagem = '';
@@ -112,13 +107,13 @@ export default defineComponent({
 
                 default: {
                     try {
-                        const salvar = await cadastroRacao(this.racao)
+                        const salvar = await cadastroRacao(this.pet)
 
                         this.visible = false;
-                        this.racao.nome = '',
-                            this.racao.dataCompra = '',
-                            this.racao.kgQuantidade = 0,
-                            this.racao.valorPago = 0
+                        this.pet.nome = '',
+                            this.pet.idade = '',
+                            this.pet.kg = 0,
+                            this.pet.historicoMedico = ''
                         mensagem = 'Ração salva!'
                         window.location.reload()
                     }
@@ -129,19 +124,19 @@ export default defineComponent({
                 }
 
             }
-            console.log(this.racao.dataCompra);
+            console.log(this.pet.idade);
             alert(mensagem)
         },
         cancelar() {
-            this.racao.nome = '',
-                this.racao.dataCompra = '',
-                this.racao.kgQuantidade = 0,
-                this.racao.valorPago = 0
+            this.pet.nome = '',
+                this.pet.idade = '',
+                this.pet.kg = 0,
+                this.pet.historicoMedico = ''
             this.visible = false;
 
         },
         camposPreenchidos() {
-            return this.racao.nome && this.racao.kgQuantidade && this.racao.valorPago && this.racao.dataCompra;
+            return this.pet.nome && this.pet.kg && this.pet.historicoMedico && this.pet.idade;
         },
 
 
@@ -199,7 +194,7 @@ export default defineComponent({
     color: black;
 }
 
-.cadastro-racao {
+.cadastro-pet {
 
     height: 10rem;
     display: flex;

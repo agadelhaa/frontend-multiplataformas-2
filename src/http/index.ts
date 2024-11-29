@@ -9,12 +9,30 @@ import atualizarUsuario from "@/interface/AtualizacaoUsuario";
 import AtualizacaoUsuario from "@/interface/AtualizacaoUsuario";
 import EsqueceuSenha from "@/interface/EsqueceuSenha";
 import ListarUsuario from "@/interface/ListarUsuario";
- const urlDeAcesso="https://zeus-production-f6c8.up.railway.app"
+import CadastroAgendaDTO from "@/interface/CadastroAgendaDTO";
+ const urlDeAcesso="http://localhost:8080"
 export async function cadastroRacao(salvarRacao: IRacao): Promise<string> {
     const body = JSON.stringify(salvarRacao);
     // console.log(body);
     const resposta = await axios.post(`${urlDeAcesso}/racao`, salvarRacao);
     return resposta.data as string;
+}
+
+export async function cadastroAgenda(salvarAgenda: CadastroAgendaDTO): Promise<string> {
+    const body = JSON.stringify(salvarAgenda);
+
+    try {
+        const resposta = await axios.post(`${urlDeAcesso}/agenda`, body, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        return resposta.data; // Resposta esperada como string do backend
+    } catch (error) {
+        // Aqui pode ser feito um tratamento mais robusto de erros
+        console.error('Erro ao salvar agendamento:', error);
+        throw new Error('Erro ao salvar agendamento');
+    }
 }
 export async function obterRacao():Promise<ListarRacao> {
     const resposta = await axios.get(`${urlDeAcesso}/racao`);
@@ -46,7 +64,7 @@ export async function obterLogin():Promise<ListarUsuario> {
     }
 
     export async function deleteItem(id:number) {
-        const resposta = await axios.delete(`urlDeAcesso/racao/${id}`)
+        const resposta = await axios.delete(`${urlDeAcesso}/racao/${id}`)
         console.log(resposta , 'excluida');
         
     }

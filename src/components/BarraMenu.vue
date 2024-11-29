@@ -1,8 +1,9 @@
-<template>
+<!-- <template>
     <div class="principal">
         <div class="apresentacao ">
             <div class="rotas"> 
                 <CadastroRacao />
+                
             </div>
         </div>
         <BarraPerfil />
@@ -97,4 +98,4 @@ export default defineComponent({
 
 
 
-</style>
+</style> -->

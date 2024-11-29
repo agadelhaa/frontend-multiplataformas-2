@@ -27,6 +27,7 @@ import Password from 'primevue/password';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
+
 const app = createApp(App)
   .use(PrimeVue)
   .use(roteador)
