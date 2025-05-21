@@ -1,17 +1,17 @@
 <template>
     <main class="apresentacao-perfil">
              <div class="logo-titulo">
-            <img src="../assets/logo-zeus.jpg" alt="logo do petFood" class="logo">
+            <img src="../assets/Logo.png" alt="logo do petFood" class="logo">
             <h2 class="titulo-logo">
                
-                    Pet+
+                    Praça+
                     
             </h2>
         </div>
         <div class="rotas">
             <CadastroRacao></CadastroRacao>
-            <button v-on:click="agendarConsulta()" class="btn-rota">Agendar Consulta</button>
-            <Button v-on:click="marketplace()" class="btn-rota">Marketplace</Button>
+            <button v-on:click="agendarConsulta()" class="btn-rota">Agendar solicitações</button>
+            <Button v-on:click="marketplace()" class="btn-rota">Ver solicitações</Button>
 
         </div>
         <div class="bem-vindo">
@@ -123,8 +123,8 @@ this.$router.push('/login')
 .apresentacao-perfil{
     width: 100%;
     height: 6rem;
-    background-color: white;
-    box-shadow: 9px 7px 6px black;
+    background-color: #f37457;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     position: absolute;
@@ -132,16 +132,23 @@ this.$router.push('/login')
 }
 
 .btn-rota{
-    width: 50%;
+    width: 100%;
+    background-color: #86abe2;
+    border-radius: 8px;
+    color: white;
     height: 3rem;
-    box-shadow: 1px 1px 1px 1px black;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+.btn-rota:hover{
+ background-color:#4c8de6!important ;
+  color: white !important;
 }
 .p-menu-overlay {
     border-bottom: 20px solid blue;
 }
 .perfil{
     
-    box-shadow: 9px 7px 6px black;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     height: 3rem;
     display: flex;
     align-items: center;
@@ -156,7 +163,8 @@ this.$router.push('/login')
     width: 30%;
 }
 .logo {
-    width:26%;
+    width:22%;
+    margin-left: 2rem;
 
 }
 .link-rota {
@@ -179,7 +187,7 @@ this.$router.push('/login')
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 70px;
+    gap: 30px;
     height: 4rem;
 }
 
@@ -224,6 +232,7 @@ this.$router.push('/login')
     height: 6rem;
     margin-left: 26%;
     gap: 10px;
+    margin-right: 1rem;
 }
 
 .foto-card {
@@ -238,7 +247,7 @@ this.$router.push('/login')
 .separador {
     background-color: black;
     display: inline-block;
-    height: 5rem;
+    height: 5.5rem;
     margin: 10px 1px 0px;
     width: 1px;
     vertical-align: middle;
@@ -265,12 +274,13 @@ this.$router.push('/login')
 
 .titulo-logo {
     color: black;
-    box-shadow: 9px 7px 6px black;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     font-size: 30px;
-    width: 36%;
+    width: 40%;
     text-align: center;
     border: 2px solid;
     border-radius: 9px;
+    padding: 0.5rem;
 }
 
 

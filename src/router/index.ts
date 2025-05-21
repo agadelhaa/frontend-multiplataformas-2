@@ -50,5 +50,10 @@ const roteador = createRouter({
 
 })
 
+roteador.beforeEach((to, from, next) => {
+    // Ignorando autenticação para desenvolvimento
+    next();
+  });
+
 export default roteador;
 
