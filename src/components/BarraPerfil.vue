@@ -9,7 +9,6 @@
             </h2>
         </div>
         <div class="rotas">
-            <CadastroRacao></CadastroRacao>
             <button v-on:click="agendarConsulta()" class="btn-rota">Agendar solicitações</button>
             <Button v-on:click="marketplace()" class="btn-rota">Ver solicitações</Button>
 
@@ -39,17 +38,13 @@ import Menu from 'primevue/menu';
 import { realizarLogout, userLogado, verificarUsuarioLogado } from '@/http';
 import AtualizarUser from './AtualizarUser.vue';
 import ListarUsuario from './ListarUsuario.vue';
-import CadastroRacao from './CadastroRacao.vue';
 import Marketplace from './Marketplace.vue';
 import BarraMenu from './BarraMenu.vue';
 
 
 export default defineComponent({
     name:'BarraPerfil',
-    components:{
-        CadastroRacao,
-       
-    },
+    components:{},
     data(){
         return{
             user: '',
@@ -111,7 +106,7 @@ const sair = await realizarLogout()
 console.log(sair);
 console.log(localStorage);
 
-this.$router.push('/login')
+this.$router.push('/#')
 },
     },
     mounted(){
