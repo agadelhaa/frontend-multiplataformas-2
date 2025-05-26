@@ -1,7 +1,7 @@
 <template>
     <main class="apresentacao-perfil">
              <div class="logo-titulo">
-            <img src="../assets/Logo.png" alt="logo do petFood" class="logo">
+            <img src="../assets/logo-praca.png" alt="logo do petFood" class="logo">
             <h2 class="titulo-logo">
                
                     Praça+

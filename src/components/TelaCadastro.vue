@@ -13,7 +13,7 @@
           </div>
         </form>
         <span class="separador"> </span>
-        <img src="../assets/homeImg.jpg" alt="" class="foto-login" />
+        <img src="../assets/home-img.jpg" alt="" class="foto-login" />
       </div>
     </div>
   </div>
