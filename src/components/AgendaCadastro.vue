@@ -44,16 +44,16 @@
               >
                 <option value="" disabled>Selecione...</option>
                 <option value="Vacina">Pintura</option>
-                <option value="Consulta Veterinária">
-                  Limpeza geral
-                </option>
+                <option value="Consulta Veterinária">Limpeza geral</option>
                 <option value="Banho">Manutenção de jardinagem</option>
                 <option value="Tosa">Reparo</option>
               </select>
             </div>
-            
+
             <div class="form-group">
-              <label for="pet-id" class="campo-label">Localização específica dentro da praça</label>
+              <label for="pet-id" class="campo-label"
+                >Localização específica dentro da praça</label
+              >
               <input
                 type="text"
                 v-model="agenda.pet"
@@ -158,6 +158,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow-y: auto;
 }
 
 .agenda-content {
@@ -165,6 +166,8 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 6rem; /* Compensa a altura da barra */
+  padding-bottom: 2rem; /* Para o rodapé */
   margin-top: 4%;
 }
 
@@ -227,7 +230,7 @@ export default defineComponent({
 }
 
 .enviar:hover {
-  background-color:#4c8de6!important ;
+  background-color: #4c8de6 !important ;
 }
 
 .cancelar {
@@ -243,4 +246,23 @@ export default defineComponent({
   background-color: red !important;
   color: white !important;
 }
+
+@media screen and (max-width: 576px) {
+  .agenda-container {
+    padding: 1rem;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .enviar,
+  .cancelar {
+    width: 100%;
+  }
+}
+
 </style>

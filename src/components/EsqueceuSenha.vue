@@ -214,14 +214,35 @@ export default defineComponent({
 @media screen and (max-width: 576px) {
   .cadastro-componente-1 {
     flex-direction: column;
+    gap: 1rem;
+    padding: 0 10px;
   }
-  .botoes {
-    width: 74%;
-    margin-left: 30px;
+
+  .componente-cadastro-1,
+  .componente-cadastro-2,
+  .componente-cadastro-3 {
+    flex-direction: column;
+    width: 100%;
   }
+
   .input-cadastros {
-    width: 64%;
-    margin-left: 42px;
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .botoes {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: 0;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .enviar,
+  .cancelar {
+    width: 100% !important;
   }
 }
+
 </style>

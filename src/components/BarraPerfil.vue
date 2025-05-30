@@ -18,9 +18,6 @@
                
         Bem-vindo, {{ user }}
       </h2>
-      <span class="separador">
-                   
-                </span>
                 <div class="card flex justify-content-center perfil">
         <Button type="button" icon="pi pi-cog" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
         <Menu ref="menu" id="overlay_menu"  :model="items" :popup="true" />
@@ -123,7 +120,7 @@ this.$router.push('/#')
     display: flex;
     align-items: center;
     position: absolute;
-    
+    z-index: 1000;
 }
 
 .btn-rota{
@@ -237,15 +234,6 @@ this.$router.push('/#')
 .mensagem {
     font-size: 20px;
     color: black;
-}
-
-.separador {
-    background-color: black;
-    display: inline-block;
-    height: 5.5rem;
-    margin: 10px 1px 0px;
-    width: 1px;
-    vertical-align: middle;
 }
 
 .apresentacao-card {

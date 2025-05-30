@@ -302,19 +302,29 @@ export default defineComponent({
 }
 
 @media screen and (max-width: 576px) {
-  .cadastro-componente-1,
-  .cadastro-componente-2 {
+  .cadastro-componente-1 {
     flex-direction: column;
-    margin-bottom: 10px;
+    padding: 0;
+    gap: 10px;
+  }
+
+  .input-cadastros {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .botoes {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-left: 0;
+    width: 100%;
   }
 
   .enviar,
   .cancelar {
-    width: 80px;
-  }
-
-  .botoes {
-    gap: 16%;
+    width: 100%;
   }
 }
+
 </style>
